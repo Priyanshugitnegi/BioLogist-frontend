@@ -1,0 +1,194 @@
+/* ===============================
+   PRODUCTS PAGE – ENTERPRISE
+================================ */
+
+.products-page {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 70px 40px 90px;
+  background: #ffffff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.products-header {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.products-header h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #0f172a;
+}
+
+.products-header p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #64748b;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   CATEGORY BAR
+================================ */
+
+.category-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-pill span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.category-pill:hover {
+  background: #f1f5f9;
+}
+
+.category-pill.active {
+  background: #0a5bd8;
+  color: #ffffff;
+  border-color: #0a5bd8;
+}
+
+.category-pill.active span {
+  color: #dbeafe;
+}
+
+/* ===============================
+   PRODUCT GRID
+================================ */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 36px;
+}
+
+/* ===============================
+   PRODUCT CARD
+================================ */
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* ===============================
+   IMAGE
+================================ */
+
+.product-image {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image img {
+  max-height: 160px;
+  object-fit: contain;
+}
+
+/* ===============================
+   PRODUCT INFO
+================================ */
+
+.product-info {
+  margin-top: 16px;
+}
+
+.product-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.product-info .catalog {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.product-info .variants {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #0a5bd8;
+  font-weight: 500;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 70px 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .products-page {
+    padding: 50px 24px 70px;
+  }
+}
+
+@media (max-width: 600px) {
+  .products-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .products-grid {
+    gap: 24px;
+  }
+
+  .product-image img {
+    max-height: 140px;
+  }
+}

@@ -1,0 +1,46 @@
+.search-results {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    max-height: 420px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  .search-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .search-product {
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .search-product:hover {
+    color: #5b2ecc;
+  }
+  
+  .search-variants {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .variant-chip {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: #f2f2f2;
+    cursor: pointer;
+  }
+  
+  .variant-chip:hover {
+    background: #5b2ecc;
+    color: #fff;
+  }
+  

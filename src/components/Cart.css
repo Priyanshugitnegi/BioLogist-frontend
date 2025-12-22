@@ -1,0 +1,154 @@
+/* src/components/Cart.css */
+.cart-page {
+  padding: 80px 0;
+  min-height: 70vh;
+}
+
+.cart-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1a1a2e;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.cart-empty h2 {
+  margin-bottom: 1rem;
+  color: #6c63ff;
+}
+
+.cart-items {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 2fr 1.5fr auto;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #1a1a2e;
+}
+
+.cart-item-price {
+  color: #666;
+  font-weight: 600;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.qty-btn:hover {
+  background: #f8f9fc;
+  border-color: #6c63ff;
+}
+
+.qty-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qty {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.remove-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.remove-btn:hover {
+  background: #e03e4d;
+}
+
+.cart-item-total {
+  font-weight: 700;
+  color: #1a1a2e;
+  text-align: right;
+}
+
+.cart-summary {
+  text-align: right;
+  padding: 1.5rem;
+  background: #f8f9fc;
+  border-radius: 12px;
+}
+
+.cart-total {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a2e;
+}
+
+.checkout-btn {
+  padding: 12px 32px;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-item {
+    grid-template-columns: 70px 1fr;
+    gap: 0.75rem;
+  }
+
+  .cart-item-actions,
+  .cart-item-total {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .cart-item-total {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .cart-summary {
+    text-align: center;
+  }
+}

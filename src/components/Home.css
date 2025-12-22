@@ -1,0 +1,142 @@
+.home-page {
+  background: #f8fafc;
+}
+
+/* CONTAINER */
+.home-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+/* HERO */
+.home-hero {
+  background: linear-gradient(135deg, #e8f5ef, #f4edff);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 52px;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.15;
+}
+
+.home-title span {
+  color: #6b21a8; /* purple */
+}
+
+.home-subtitle {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #4b5563;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-actions {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* BUTTONS */
+.btn-primary {
+  background: linear-gradient(135deg, #22c55e, #6b21a8);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 2px solid #6b21a8;
+  color: #6b21a8;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* TRUST */
+.home-trust {
+  background: white;
+  padding: 70px 0;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.trust-card {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.trust-card h3 {
+  color: #15803d;
+  margin-bottom: 10px;
+}
+
+/* SOLUTIONS */
+.home-solutions {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 48px;
+  color: #111827;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.solution-box {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  border-left: 5px solid #22c55e;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.solution-box h4 {
+  color: #6b21a8;
+  margin-bottom: 10px;
+}
+
+/* CTA */
+.home-cta {
+  padding: 80px 0;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #22c55e, #6b21a8);
+  color: white;
+  border-radius: 18px;
+  padding: 60px;
+  text-align: center;
+}
+
+.cta-box h2 {
+  font-size: 32px;
+  margin-bottom: 24px;
+}

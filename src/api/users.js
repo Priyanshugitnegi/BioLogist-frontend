@@ -1,35 +1,51 @@
 import axios from "axios";
 
+// For development (local)
 const API = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: "http://127.0.0.1:8000/api",
 });
 
-// Fetch all users
-export const fetchUsers = async () => {
-  const res = await API.get("/users");
+// For production (Render) – uncomment later
+// const API = axios.create({
+//   baseURL: "https://your-render-backend.onrender.com/api",
+// });
+
+
+// =============================
+// PRODUCTS
+// =============================
+
+// Fetch all products
+export const fetchProducts = async () => {
+  const res = await API.get("/products/");
   return res.data;
 };
 
-// Fetch single user
-export const fetchUser = async (id) => {
-  const res = await API.get(`/users/${id}`);
+// Fetch single product
+export const fetchProduct = async (id) => {
+  const res = await API.get(`/products/${id}/`);
   return res.data;
 };
 
-// Create user (simulated)
-export const createUser = async (data) => {
-  const res = await API.post("/users", data);
+
+
+// =============================
+// VARIANTS
+// =============================
+
+// Fetch variants of a product
+export const fetchVariants = async (productId) => {
+  const res = await API.get(`/products/${productId}/variants/`);
   return res.data;
 };
 
-// Update user (simulated)
-export const updateUser = async (id, data) => {
-  const res = await API.put(`/users/${id}`, data);
-  return res.data;
-};
 
-// Delete user (simulated)
-export const deleteUser = async (id) => {
-  await API.delete(`/users/${id}`);
-  return true;
+
+// =============================
+// ENQUIRY FORM
+// =============================
+
+export const sendEnquiry = async (data) => {
+  const res = await API.post("/enquiry/", data);
+  return res.data;
 };

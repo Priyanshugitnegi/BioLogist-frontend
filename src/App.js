@@ -10,7 +10,7 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import Contact from './components/Contact';
 import OrderSuccess from './components/OrderSuccess';
-import About from './components/About';          // <-- ADDED
+import About from './components/About';
 import './App.css';
 
 function App() {
@@ -22,21 +22,28 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
+
+            {/* 🔥 FIX: slug instead of id */}
+            <Route path="/product/:slug" element={<ProductDetail />} />
+
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/order-success" element={<OrderSuccess />} />
-            <Route path="/about" element={<About />} />     {/* <-- ADDED */}
-            <Route path="*" element={
-              <div style={{ padding: '4rem', textAlign: 'center' }}>
-                <h1>404</h1>
-                <p>Page Not Found</p>
-                <a href="/">Go Home</a>
-              </div>
-            } />
+            <Route path="/about" element={<About />} />
+
+            <Route
+              path="*"
+              element={
+                <div style={{ padding: '4rem', textAlign: 'center' }}>
+                  <h1>404</h1>
+                  <p>Page Not Found</p>
+                  <a href="/">Go Home</a>
+                </div>
+              }
+            />
           </Routes>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </CartProvider>
   );

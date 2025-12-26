@@ -7,37 +7,44 @@ import kitBoxImg from "../assets/kit box.jpeg";
 import bufferBottleImg from "../assets/buffer bottle.jpeg";
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
+  const [error, setError] = useState(null);
 
-  /* ---------------- FETCH PRODUCT ---------------- */
   useEffect(() => {
+    setProduct(null);
+    setSelectedVariant(null);
+    setError(null);
+
     axios
-      .get(`http://127.0.0.1:8000/api/products/${id}/`)
+      .get(`http://127.0.0.1:8000/api/products/slug/${slug}/`)
       .then((res) => {
         setProduct(res.data);
 
-        const defaultVariant =
-          res.data.variants.find((v) => v.is_default) ||
-          res.data.variants[0];
+        if (res.data.variants?.length > 0) {
+          const defaultVariant =
+            res.data.variants.find(v => v.is_default) ||
+            res.data.variants[0];
 
-        setSelectedVariant(defaultVariant);
+          setSelectedVariant(defaultVariant);
+        }
       })
-      .catch(console.error);
-  }, [id]);
+      .catch(() => {
+        setError("Product not found");
+      });
+  }, [slug]);
 
-  if (!product || !selectedVariant) {
-    return <p>Loading...</p>;
-  }
+  if (error) return <p>{error}</p>;
+  if (!product) return <p>Loading...</p>;
 
-  /* ---------------- IMAGE LOGIC ---------------- */
-  const isKit = product.variants.some((v) =>
-    ["preps", "plates", "wells", "kits"].includes(
-      v.unit?.toLowerCase()
-    )
+  const hasVariants = product.variants?.length > 0;
+
+  /* IMAGE LOGIC */
+  const isKit = hasVariants && product.variants.some(v =>
+    ["preps", "plates", "wells", "kits"].includes(v.unit?.toLowerCase())
   );
 
   const image = isKit ? kitBoxImg : bufferBottleImg;
@@ -45,6 +52,7 @@ const ProductDetail = () => {
   return (
     <div className="product-detail-container">
       <div className="product-detail-grid">
+
         {/* IMAGE */}
         <div className="product-image">
           <img src={image} alt={product.name} />
@@ -54,67 +62,65 @@ const ProductDetail = () => {
         <div className="product-info">
           <h1>{product.name}</h1>
 
-          <p>
-            <strong>Catalog No:</strong>{" "}
-            {selectedVariant.catalog_number}
-          </p>
+          {hasVariants && (
+            <p>
+              <strong>Catalog No:</strong>{" "}
+              {selectedVariant.catalog_number}
+            </p>
+          )}
 
           <p>
-            <strong>Category:</strong>{" "}
-            {product.category_name}
+            <strong>Category:</strong> {product.category_name}
           </p>
 
           {product.subcategory_name && (
             <p>
-              <strong>Subcategory:</strong>{" "}
-              {product.subcategory_name}
+              <strong>Subcategory:</strong> {product.subcategory_name}
             </p>
           )}
 
           {/* VARIANTS */}
-          <div className="variant-section">
-            <h3>Available Variants</h3>
-
-            <div className="variant-buttons">
-              {product.variants.map((variant) => (
-                <button
-                  key={variant.id}
-                  className={
-                    selectedVariant.id === variant.id
-                      ? "variant-btn active"
-                      : "variant-btn"
-                  }
-                  onClick={() => setSelectedVariant(variant)}
-                >
-                  {variant.display_label}
-                </button>
-              ))}
+          {hasVariants && product.variants.length > 1 && (
+            <div className="variant-section">
+              <h3>Available Variants</h3>
+              <div className="variant-buttons">
+                {product.variants.map((variant) => (
+                  <button
+                    key={variant.id}
+                    className={
+                      selectedVariant?.id === variant.id
+                        ? "variant-btn active"
+                        : "variant-btn"
+                    }
+                    onClick={() => setSelectedVariant(variant)}
+                  >
+                    {variant.display_label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* PRICE */}
           <div className="price">
-            {selectedVariant.price ? (
+            {hasVariants && selectedVariant?.price ? (
               <span>₹ {selectedVariant.price}</span>
             ) : (
               <span className="por">Price on Request</span>
             )}
           </div>
 
-          {/* ENQUIRE NOW */}
+          {/* ENQUIRE */}
           <button
             className="enquire-btn"
             onClick={() =>
               navigate("/contact", {
                 state: {
-                  // 🔥 REQUIRED FOR BACKEND
                   productId: product.id,
-                  variantId: selectedVariant.id,
-
-                  // 👌 DISPLAY PURPOSE
+                  variantId: selectedVariant?.id || null,
                   productName: product.name,
-                  catalog: selectedVariant.catalog_number,
-                  variant: selectedVariant.display_label,
+                  catalog: selectedVariant?.catalog_number || "",
+                  variant: selectedVariant?.display_label || "",
                 },
               })
             }

@@ -6,6 +6,14 @@ import "./Products.css";
 import kitBoxImg from "../assets/kit box.jpeg";
 import bufferBottleImg from "../assets/buffer bottle.jpeg";
 
+/* ---------------- SLUG NORMALIZER (MATCHES DJANGO) ---------------- */
+const normalize = (str) =>
+  str
+    ?.toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -21,7 +29,13 @@ const Products = () => {
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/products/")
-      .then((res) => setProducts(res.data))
+      .then((res) => {
+        // ✅ FIX: works for paginated & non-paginated APIs
+        const data = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+        setProducts(data);
+      })
       .catch(console.error);
 
     axios
@@ -32,16 +46,19 @@ const Products = () => {
 
   /* ---------------- FILTER PRODUCTS ---------------- */
   const filteredProducts = useMemo(() => {
-    let list = products;
+    let list = [...products];
 
-    // Category filter (by slug)
+    // ✅ CATEGORY FILTER (SAFE)
     if (categorySlug !== "all") {
+      const normalizedSlug = normalize(categorySlug);
       list = list.filter(
-        (p) => p.category_slug === categorySlug
+        (p) =>
+          p.category_slug &&
+          normalize(p.category_slug) === normalizedSlug
       );
     }
 
-    // Subcategory filter (by id)
+    // Subcategory filter
     if (subId) {
       list = list.filter(
         (p) => String(p.subcategory) === String(subId)
@@ -69,10 +86,10 @@ const Products = () => {
   /* ---------------- IMAGE LOGIC ---------------- */
   const getProductImage = (product) => {
     const isKit = product.variants?.some((v) =>
-      ["preps", "plates", "wells", "kits"].includes(
-        v.unit?.toLowerCase()
-      )
+      v.quantity?.toLowerCase().includes("prep") ||
+      v.quantity?.toLowerCase().includes("kit")
     );
+
     return isKit ? kitBoxImg : bufferBottleImg;
   };
 
@@ -107,7 +124,9 @@ const Products = () => {
             key={cat.id}
             to={`/products?category=${cat.slug}`}
             className={`category-pill ${
-              categorySlug === cat.slug ? "active" : ""
+              normalize(categorySlug) === normalize(cat.slug)
+                ? "active"
+                : ""
             }`}
           >
             {cat.name}
@@ -127,7 +146,7 @@ const Products = () => {
         {filteredProducts.map((product) => (
           <Link
             key={product.id}
-            to={`/product/${product.id}`}
+            to={`/product/${product.slug}`}
             className="product-card"
           >
             <div className="product-image">
@@ -139,10 +158,9 @@ const Products = () => {
 
             <div className="product-info">
               <h3>{product.name}</h3>
-
               <p className="variants">
-                {product.variants.length} variant
-                {product.variants.length > 1 ? "s" : ""}
+                {product.variants?.length || 0} variant
+                {product.variants?.length > 1 ? "s" : ""}
               </p>
             </div>
           </Link>

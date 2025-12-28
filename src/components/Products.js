@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { Link, useLocation } from "react-router-dom";
 import "./Products.css";
 
@@ -27,10 +27,9 @@ const Products = () => {
 
   /* ---------------- FETCH DATA ---------------- */
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/products/")
+    api
+      .get("/api/products/")
       .then((res) => {
-        // ✅ FIX: works for paginated & non-paginated APIs
         const data = Array.isArray(res.data)
           ? res.data
           : res.data.results || [];
@@ -38,8 +37,8 @@ const Products = () => {
       })
       .catch(console.error);
 
-    axios
-      .get("http://127.0.0.1:8000/api/categories/")
+    api
+      .get("/api/categories/")
       .then((res) => setCategories(res.data))
       .catch(console.error);
   }, []);
@@ -48,7 +47,6 @@ const Products = () => {
   const filteredProducts = useMemo(() => {
     let list = [...products];
 
-    // ✅ CATEGORY FILTER (SAFE)
     if (categorySlug !== "all") {
       const normalizedSlug = normalize(categorySlug);
       list = list.filter(
@@ -58,14 +56,12 @@ const Products = () => {
       );
     }
 
-    // Subcategory filter
     if (subId) {
       list = list.filter(
         (p) => String(p.subcategory) === String(subId)
       );
     }
 
-    // Search filter
     if (searchQuery) {
       list = list.filter((product) => {
         const nameMatch = product.name
@@ -107,7 +103,6 @@ const Products = () => {
         </p>
       </header>
 
-      {/* CATEGORY BAR */}
       <div className="category-bar">
         <Link
           to="/products"
@@ -135,12 +130,9 @@ const Products = () => {
         ))}
       </div>
 
-      {/* PRODUCT GRID */}
       <section className="products-grid">
         {filteredProducts.length === 0 && (
-          <div className="no-products">
-            No products found.
-          </div>
+          <div className="no-products">No products found.</div>
         )}
 
         {filteredProducts.map((product) => (

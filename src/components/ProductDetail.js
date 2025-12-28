@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 import "./ProductDetail.css";
 
 import kitBoxImg from "../assets/kit box.jpeg";
@@ -19,14 +19,14 @@ const ProductDetail = () => {
     setSelectedVariant(null);
     setError(null);
 
-    axios
-      .get(`http://127.0.0.1:8000/api/products/slug/${slug}/`)
+    api
+      .get(`/api/products/slug/${slug}/`)
       .then((res) => {
         setProduct(res.data);
 
         if (res.data.variants?.length > 0) {
           const defaultVariant =
-            res.data.variants.find(v => v.is_default) ||
+            res.data.variants.find((v) => v.is_default) ||
             res.data.variants[0];
 
           setSelectedVariant(defaultVariant);
@@ -42,17 +42,20 @@ const ProductDetail = () => {
 
   const hasVariants = product.variants?.length > 0;
 
-  /* IMAGE LOGIC */
-  const isKit = hasVariants && product.variants.some(v =>
-    ["preps", "plates", "wells", "kits"].includes(v.unit?.toLowerCase())
-  );
+  /* ---------------- IMAGE LOGIC ---------------- */
+  const isKit =
+    hasVariants &&
+    product.variants.some((v) =>
+      ["preps", "plates", "wells", "kits"].includes(
+        v.unit?.toLowerCase()
+      )
+    );
 
   const image = isKit ? kitBoxImg : bufferBottleImg;
 
   return (
     <div className="product-detail-container">
       <div className="product-detail-grid">
-
         {/* IMAGE */}
         <div className="product-image">
           <img src={image} alt={product.name} />
@@ -62,7 +65,7 @@ const ProductDetail = () => {
         <div className="product-info">
           <h1>{product.name}</h1>
 
-          {hasVariants && (
+          {hasVariants && selectedVariant && (
             <p>
               <strong>Catalog No:</strong>{" "}
               {selectedVariant.catalog_number}
@@ -75,7 +78,8 @@ const ProductDetail = () => {
 
           {product.subcategory_name && (
             <p>
-              <strong>Subcategory:</strong> {product.subcategory_name}
+              <strong>Subcategory:</strong>{" "}
+              {product.subcategory_name}
             </p>
           )}
 
@@ -119,8 +123,10 @@ const ProductDetail = () => {
                   productId: product.id,
                   variantId: selectedVariant?.id || null,
                   productName: product.name,
-                  catalog: selectedVariant?.catalog_number || "",
-                  variant: selectedVariant?.display_label || "",
+                  catalog:
+                    selectedVariant?.catalog_number || "",
+                  variant:
+                    selectedVariant?.display_label || "",
                 },
               })
             }

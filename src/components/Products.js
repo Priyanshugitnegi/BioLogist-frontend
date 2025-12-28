@@ -6,7 +6,7 @@ import "./Products.css";
 import kitBoxImg from "../assets/kit box.jpeg";
 import bufferBottleImg from "../assets/buffer bottle.jpeg";
 
-/* ---------------- SLUG NORMALIZER (MATCHES DJANGO) ---------------- */
+/* ---------------- SLUG NORMALIZER ---------------- */
 const normalize = (str) =>
   str
     ?.toLowerCase()
@@ -27,10 +27,10 @@ const Products = () => {
 
   /* ---------------- FETCH DATA ---------------- */
   useEffect(() => {
+    // PRODUCTS
     axios
       .get("http://127.0.0.1:8000/api/products/")
       .then((res) => {
-        // ✅ FIX: works for paginated & non-paginated APIs
         const data = Array.isArray(res.data)
           ? res.data
           : res.data.results || [];
@@ -38,9 +38,15 @@ const Products = () => {
       })
       .catch(console.error);
 
+    // CATEGORIES (✅ FIXED)
     axios
       .get("http://127.0.0.1:8000/api/categories/")
-      .then((res) => setCategories(res.data))
+      .then((res) => {
+        const data = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+        setCategories(data);
+      })
       .catch(console.error);
   }, []);
 
@@ -48,32 +54,34 @@ const Products = () => {
   const filteredProducts = useMemo(() => {
     let list = [...products];
 
-    // ✅ CATEGORY FILTER (SAFE)
+    // CATEGORY FILTER
     if (categorySlug !== "all") {
-      const normalizedSlug = normalize(categorySlug);
+      const normalized = normalize(categorySlug);
       list = list.filter(
         (p) =>
           p.category_slug &&
-          normalize(p.category_slug) === normalizedSlug
+          normalize(p.category_slug) === normalized
       );
     }
 
-    // Subcategory filter
+    // SUBCATEGORY FILTER
     if (subId) {
       list = list.filter(
         (p) => String(p.subcategory) === String(subId)
       );
     }
 
-    // Search filter
+    // SEARCH FILTER
     if (searchQuery) {
-      list = list.filter((product) => {
-        const nameMatch = product.name
+      list = list.filter((p) => {
+        const nameMatch = p.name
           ?.toLowerCase()
           .includes(searchQuery);
 
-        const variantMatch = product.variants?.some((v) =>
-          v.catalog_number?.toLowerCase().includes(searchQuery)
+        const variantMatch = p.variants?.some((v) =>
+          v.catalog_number
+            ?.toLowerCase()
+            .includes(searchQuery)
         );
 
         return nameMatch || variantMatch;
@@ -86,10 +94,9 @@ const Products = () => {
   /* ---------------- IMAGE LOGIC ---------------- */
   const getProductImage = (product) => {
     const isKit = product.variants?.some((v) =>
-      v.quantity?.toLowerCase().includes("prep") ||
-      v.quantity?.toLowerCase().includes("kit")
+      v.quantity?.toLowerCase().includes("kit") ||
+      v.quantity?.toLowerCase().includes("prep")
     );
-
     return isKit ? kitBoxImg : bufferBottleImg;
   };
 
@@ -103,7 +110,7 @@ const Products = () => {
             : "Our Products"}
         </h1>
         <p>
-          Premium molecular biology reagents trusted by laboratories worldwide
+          Premium molecular biology reagents trusted worldwide
         </p>
       </header>
 
@@ -130,12 +137,12 @@ const Products = () => {
             }`}
           >
             {cat.name}
-            <span>{cat.product_count}</span>
+            <span>{cat.product_count || 0}</span>
           </Link>
         ))}
       </div>
 
-      {/* PRODUCT GRID */}
+      {/* PRODUCTS GRID */}
       <section className="products-grid">
         {filteredProducts.length === 0 && (
           <div className="no-products">
@@ -160,7 +167,7 @@ const Products = () => {
               <h3>{product.name}</h3>
               <p className="variants">
                 {product.variants?.length || 0} variant
-                {product.variants?.length > 1 ? "s" : ""}
+                {product.variants?.length !== 1 && "s"}
               </p>
             </div>
           </Link>

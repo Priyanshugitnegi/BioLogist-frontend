@@ -15,13 +15,17 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { cartCount } = useCart();
 
-  /* ---------------- FETCH CATEGORIES ---------------- */
+  /* ---------------- FETCH CATEGORIES (FIXED) ---------------- */
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/categories/")
       .then((res) => {
-        setCategories(res.data);
-        setActiveCategory(res.data[0] || null);
+        const data = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+
+        setCategories(data);
+        setActiveCategory(data[0] || null);
       })
       .catch(console.error);
   }, []);
@@ -98,7 +102,7 @@ const Navbar = () => {
                     >
                       <span>{cat.name}</span>
                       <span className="cat-count">
-                        ({cat.product_count})
+                        ({cat.product_count || 0})
                       </span>
                     </div>
                   ))}

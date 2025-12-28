@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios";
 import "./ProductDetail.css";
 
 import kitBoxImg from "../assets/kit box.jpeg";
@@ -13,27 +13,30 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   /* ================= FETCH PRODUCT (SLUG) ================= */
   useEffect(() => {
     setLoading(true);
+    setError(null);
+    setProduct(null);
+    setSelectedVariant(null);
 
-    axios
-      .get(`http://127.0.0.1:8000/api/products/slug/${slug}/`)
+    api
+      .get(`/api/products/slug/${slug}/`)
       .then((res) => {
         const data = res.data;
         setProduct(data);
 
-        // ✅ pick default variant or first variant
-        const defaultVariant =
-          data.variants.find((v) => v.is_default === true) ||
-          data.variants[0];
-
-        setSelectedVariant(defaultVariant);
+        if (data.variants?.length > 0) {
+          const defaultVariant =
+            data.variants.find((v) => v.is_default) ||
+            data.variants[0];
+          setSelectedVariant(defaultVariant);
+        }
       })
-      .catch((err) => {
-        console.error("Product fetch error:", err);
-        setProduct(null);
+      .catch(() => {
+        setError("Product not found");
       })
       .finally(() => setLoading(false));
   }, [slug]);
@@ -43,16 +46,20 @@ const ProductDetail = () => {
     return <div className="product-loading">Loading product…</div>;
   }
 
-  if (!product || !selectedVariant) {
+  if (error || !product) {
     return <div className="product-error">Product not found.</div>;
   }
 
+  const hasVariants = product.variants?.length > 0;
+
   /* ================= IMAGE LOGIC ================= */
-  const isKit = product.variants.some((v) =>
-    ["kit", "prep", "plate", "well"].some((k) =>
-      v.quantity?.toLowerCase().includes(k)
-    )
-  );
+  const isKit =
+    hasVariants &&
+    product.variants.some((v) =>
+      ["kit", "prep", "plate", "well", "kits", "plates", "wells"].some(
+        (k) => v.quantity?.toLowerCase().includes(k)
+      )
+    );
 
   const image = product.image || (isKit ? kitBoxImg : bufferBottleImg);
 
@@ -69,11 +76,12 @@ const ProductDetail = () => {
         <div className="product-info">
           <h1>{product.name}</h1>
 
-          {/* ✅ CATALOG UPDATES WITH VARIANT */}
-          <p className="meta">
-            <strong>Catalog No:</strong>{" "}
-            {selectedVariant.catalog_number || product.catalog_number}
-          </p>
+          {hasVariants && selectedVariant && (
+            <p className="meta">
+              <strong>Catalog No:</strong>{" "}
+              {selectedVariant.catalog_number}
+            </p>
+          )}
 
           <p className="meta">
             <strong>Category:</strong> {product.category_name}
@@ -85,8 +93,8 @@ const ProductDetail = () => {
             </p>
           )}
 
-          {/* VARIANTS — only show if >1 */}
-          {product.variants.length > 1 && (
+          {/* VARIANTS */}
+          {hasVariants && product.variants.length > 1 && (
             <div className="variant-section">
               <h3>Available Variants</h3>
 
@@ -94,9 +102,11 @@ const ProductDetail = () => {
                 {product.variants.map((variant) => (
                   <button
                     key={variant.id}
-                    className={`variant-btn ${
-                      selectedVariant.id === variant.id ? "active" : ""
-                    }`}
+                    className={
+                      selectedVariant?.id === variant.id
+                        ? "variant-btn active"
+                        : "variant-btn"
+                    }
                     onClick={() => setSelectedVariant(variant)}
                   >
                     {variant.display_label}
@@ -108,8 +118,10 @@ const ProductDetail = () => {
 
           {/* PRICE */}
           <div className="price">
-            {selectedVariant.price ? (
-              <span>₹ {Number(selectedVariant.price).toFixed(0)}</span>
+            {hasVariants && selectedVariant?.price ? (
+              <span>
+                ₹ {Number(selectedVariant.price).toFixed(0)}
+              </span>
             ) : (
               <span className="por">Price on Request</span>
             )}
@@ -122,10 +134,12 @@ const ProductDetail = () => {
               navigate("/contact", {
                 state: {
                   productId: product.id,
-                  variantId: selectedVariant.id,
+                  variantId: selectedVariant?.id || null,
                   productName: product.name,
-                  catalog: selectedVariant.catalog_number,
-                  variant: selectedVariant.display_label,
+                  catalog:
+                    selectedVariant?.catalog_number || "",
+                  variant:
+                    selectedVariant?.display_label || "",
                 },
               })
             }

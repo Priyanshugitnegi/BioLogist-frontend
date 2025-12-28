@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { Link, useLocation } from "react-router-dom";
 import "./Products.css";
 
@@ -28,8 +28,8 @@ const Products = () => {
   /* ---------------- FETCH DATA ---------------- */
   useEffect(() => {
     // PRODUCTS
-    axios
-      .get("http://127.0.0.1:8000/api/products/")
+    api
+      .get("/api/products/")
       .then((res) => {
         const data = Array.isArray(res.data)
           ? res.data
@@ -38,9 +38,9 @@ const Products = () => {
       })
       .catch(console.error);
 
-    // CATEGORIES (✅ FIXED)
-    axios
-      .get("http://127.0.0.1:8000/api/categories/")
+    // CATEGORIES
+    api
+      .get("/api/categories/")
       .then((res) => {
         const data = Array.isArray(res.data)
           ? res.data
@@ -109,12 +109,9 @@ const Products = () => {
             ? `Search results for “${searchQuery}”`
             : "Our Products"}
         </h1>
-        <p>
-          Premium molecular biology reagents trusted worldwide
-        </p>
+        <p>Premium molecular biology reagents trusted worldwide</p>
       </header>
 
-      {/* CATEGORY BAR */}
       <div className="category-bar">
         <Link
           to="/products"
@@ -145,9 +142,7 @@ const Products = () => {
       {/* PRODUCTS GRID */}
       <section className="products-grid">
         {filteredProducts.length === 0 && (
-          <div className="no-products">
-            No products found.
-          </div>
+          <div className="no-products">No products found.</div>
         )}
 
         {filteredProducts.map((product) => (

@@ -64,12 +64,9 @@
   font-weight: 500;
   font-size: 15px;
   color: #1f2933;
-  cursor: pointer;
-  transition: color 0.2s ease;
 }
 
-.nav-links a:hover,
-.nav-link:hover {
+.nav-links a:hover {
   color: #5b2cb5;
 }
 
@@ -94,40 +91,27 @@
 }
 
 /* =========================
-   MEGA MENU ANCHOR
+   MEGA MENU
 ========================= */
 
 .mega-dropdown {
-  position: relative; /* 🔥 anchors mega menu to Products */
+  position: relative;
 }
-
-/* =========================
-   MEGA MENU (DESKTOP)
-========================= */
 
 .mega-menu {
   position: absolute;
-  top: calc(100% + 12px); /* ✅ directly beneath Products */
+  top: 100%;
   left: 0;
-
-  width: 620px;
-  max-width: min(620px, 90vw);
-
+  width: 640px;
   background: #ecfbf6;
   border-radius: 14px;
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
-
   display: flex;
   overflow: hidden;
-  z-index: 3000;
-
-  animation: fadeIn 0.15s ease;
-  transform-origin: top left;
+  z-index: 2000;
 }
 
-/* =========================
-   LEFT COLUMN – CATEGORIES
-========================= */
+/* LEFT */
 
 .mega-left {
   width: 45%;
@@ -141,10 +125,7 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 14px;
-  color: #1f2933;
-  transition: background 0.2s ease;
 }
 
 .mega-cat:hover {
@@ -161,9 +142,7 @@
   color: #3a8f7a;
 }
 
-/* =========================
-   RIGHT COLUMN – SUBCATEGORIES
-========================= */
+/* RIGHT */
 
 .mega-right {
   width: 55%;
@@ -174,10 +153,8 @@
 .mega-sub {
   padding: 10px;
   cursor: pointer;
-  font-size: 14px;
-  color: #1f2933;
   border-radius: 6px;
-  transition: background 0.2s ease, color 0.2s ease;
+  font-size: 14px;
 }
 
 .mega-sub:hover {
@@ -186,71 +163,35 @@
 }
 
 .mega-empty {
-  font-size: 14px;
   color: #6b7280;
-  padding: 12px;
+  font-size: 14px;
 }
 
 /* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================= */
 
 @media (max-width: 768px) {
-
   .nav-container {
     flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
-  /* LOGO CENTER */
   .logo {
-    width: 100%;
     justify-content: center;
   }
 
-  .logo img {
-    height: 36px;
-  }
-
-  /* NAV LINKS CENTER */
   .nav-links {
-    width: 100%;
     justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
-  /* SEARCH BAR CENTER */
   .nav-search-wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
-  .nav-search-wrapper input {
-    width: 92%;
-    padding: 12px 14px;
-    font-size: 15px;
-    border-radius: 10px;
-  }
-
-  /* DISABLE MEGA MENU ON MOBILE */
   .mega-menu {
-    display: none !important;
+    display: none;
   }
 }

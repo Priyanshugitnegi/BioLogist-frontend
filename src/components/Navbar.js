@@ -6,6 +6,7 @@ import { useCart } from "../contexts/CartContext";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 import SearchDropdown from "./SearchDropdown";
+import { isAuthenticated, logout } from "../utils/auth"; // ✅ ADD
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
@@ -52,6 +53,12 @@ const Navbar = () => {
     navigate(`/products?category=${catSlug}&sub=${subId}`);
   };
 
+  /* ================= LOGOUT ================= */
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-container">
@@ -68,28 +75,23 @@ const Navbar = () => {
 
         {/* NAV LINKS */}
         <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+          <li><Link to="/">Home</Link></li>
 
-          {/* PRODUCTS (CLICK + HOVER) */}
+          {/* PRODUCTS */}
           <li
             className="mega-dropdown"
             onMouseEnter={openMenu}
             onMouseLeave={closeMenu}
           >
-            {/* 🔥 CLICK → /products */}
             <Link to="/products" className="nav-link">
               Products
             </Link>
 
             {showMegaMenu && (
               <div className="mega-menu">
-                {/* LEFT: CATEGORIES */}
                 <div className="mega-left">
                   <div
                     className="mega-cat"
-                    onMouseEnter={() => setActiveCategory(null)}
                     onClick={() => goToCategory("all")}
                   >
                     All Products
@@ -112,7 +114,6 @@ const Navbar = () => {
                   ))}
                 </div>
 
-                {/* RIGHT: SUBCATEGORIES */}
                 <div className="mega-right">
                   {activeCategory?.subcategories?.length ? (
                     activeCategory.subcategories.map((sub) => (
@@ -136,9 +137,20 @@ const Navbar = () => {
             )}
           </li>
 
-          <li>
-            <Link to="/enquiry">Enquiry</Link>
-          </li>
+          <li><Link to="/enquiry">Enquiry</Link></li>
+
+          {/* 🔐 AUTH */}
+          {isAuthenticated() ? (
+            <li
+              className="nav-link"
+              style={{ cursor: "pointer" }}
+              onClick={handleLogout}
+            >
+              Logout
+            </li>
+          ) : (
+            <li><Link to="/login">Login</Link></li>
+          )}
 
           {/* CART */}
           <li className="cart-item">

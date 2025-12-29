@@ -9,9 +9,10 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
-import Enquiry from "./components/Enquiry"; // ✅ CHANGED
+import Enquiry from "./components/Enquiry";
 import OrderSuccess from "./components/OrderSuccess";
 import About from "./components/About";
+import Login from "./components/Login"; // ✅ ADD THIS
 
 import "./App.css";
 
@@ -23,21 +24,24 @@ function App() {
 
         <main>
           <Routes>
+            {/* ================= PUBLIC ================= */}
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
-
-            {/* SLUG-BASED ROUTING */}
             <Route path="/product/:slug" element={<ProductDetail />} />
-
             <Route path="/cart" element={<Cart />} />
 
-            {/* ✅ ENQUIRY ROUTES */}
+            {/* ================= ENQUIRY ================= */}
             <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/contact" element={<Enquiry />} /> {/* backward support */}
 
+            {/* ================= AUTH ================= */}
+            <Route path="/login" element={<Login />} /> {/* ✅ LOGIN PAGE */}
+
+            {/* ================= OTHER ================= */}
             <Route path="/order-success" element={<OrderSuccess />} />
             <Route path="/about" element={<About />} />
 
+            {/* ================= 404 ================= */}
             <Route
               path="*"
               element={

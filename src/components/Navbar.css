@@ -1,222 +1,59 @@
 /* =========================
-   NAVBAR BASE
-========================= */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #eafaf5;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-}
-
-.nav-container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: clamp(10px, 2vh, 14px) 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2%;
-  flex-wrap: nowrap;
-}
-
-/* =========================
-   LOGO
-========================= */
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: #1f2933;
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
-  font-weight: 700;
-}
-
-.logo img {
-  height: clamp(32px, 7vw, 42px);
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.nav-search-wrapper {
-  flex: 1;
-  max-width: 36%;
-}
-
-.nav-search-wrapper input {
-  width: 100%;
-  padding: 0.55em 1em;
-  border-radius: 999px;
-  border: 1px solid #d1e5df;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-/* =========================
-   NAV LINKS
-========================= */
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: clamp(14px, 2vw, 26px);
-  list-style: none;
-}
-
-.nav-links a,
-.nav-link {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: clamp(14px, 1.2vw, 15px);
-  color: #1f2933;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-link:hover {
-  color: #5b2cb5;
-}
-
-/* =========================
-   CART
-========================= */
-
-.cart-item {
-  position: relative;
-}
-
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -10px;
-  background: #5b2cb5;
-  color: #fff;
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-weight: 600;
-}
-
-/* =========================
-   MEGA DROPDOWN (DESKTOP)
-========================= */
-
-.mega-dropdown {
-  position: relative;
-}
-
-.mega-menu,
-.mega-menu-level1 {
-  position: absolute;
-  top: 54px;
-  left: 0;
-  background: #ecfbf6;
-  border-radius: 14px;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
-  z-index: 2000;
-  animation: fadeIn 0.15s ease;
-}
-
-/* =========================
-   MEGA MENU STRUCTURE
-========================= */
-
-.mega-menu {
-  width: 620px;
-  display: flex;
-  overflow: hidden;
-}
-
-.mega-left {
-  width: 45%;
-  background: #e2f4ee;
-  padding: 10px 0;
-  border-right: 1px solid #d4ebe4;
-}
-
-.mega-right {
-  width: 55%;
-  padding: 16px;
-  background: #f7fdfb;
-}
-
-/* =========================
-   CATEGORY ITEMS
-========================= */
-
-.mega-cat,
-.mega-sub,
-.category-item {
-  padding: 10px 14px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.mega-cat:hover,
-.mega-sub:hover,
-.category-item:hover {
-  background: #dff3ee;
-  color: #5b2cb5;
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   📱 MOBILE FIXES
+   MOBILE NAVBAR FIX
 ========================= */
 
 @media (max-width: 768px) {
 
-  /* STACK CONTENT */
+  .navbar {
+    padding: 0;
+  }
+
   .nav-container {
-    flex-wrap: wrap;
-    padding: 10px 4%;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 5%;
+    gap: 14px;
   }
 
-  /* LOGO ROW */
+  /* LOGO CENTER */
   .logo {
-    flex: 1;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
-  /* SEARCH → FULL WIDTH */
+  .logo img {
+    height: 38px;
+  }
+
+  /* NAV LINKS CENTER */
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
+
+  /* SEARCH BAR CENTER */
   .nav-search-wrapper {
     width: 100%;
-    max-width: 100%;
-    order: 3;
+    display: flex;
+    justify-content: center;
   }
 
   .nav-search-wrapper input {
-    width: 100%;
-    padding: 10px 14px;
-    font-size: 1rem;
+    width: 92%;
+    max-width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 
-  /* LINKS (SMALLER) */
-  .nav-links {
-    gap: 16px;
-  }
-
-  /* ❌ DISABLE MEGA MENU ON MOBILE */
+  /* HIDE MEGA MENU ON MOBILE */
   .mega-menu,
   .mega-menu-level1 {
     display: none !important;

@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 2%;
+  flex-wrap: nowrap;
 }
 
 /* =========================
@@ -45,6 +46,15 @@
 .nav-search-wrapper {
   flex: 1;
   max-width: 36%;
+}
+
+.nav-search-wrapper input {
+  width: 100%;
+  padding: 0.55em 1em;
+  border-radius: 999px;
+  border: 1px solid #d1e5df;
+  font-size: 0.95rem;
+  outline: none;
 }
 
 /* =========================
@@ -94,7 +104,7 @@
 }
 
 /* =========================
-   MEGA DROPDOWN (DESKTOP ONLY)
+   MEGA DROPDOWN (DESKTOP)
 ========================= */
 
 .mega-dropdown {
@@ -114,7 +124,7 @@
 }
 
 /* =========================
-   MEGA MENU COLUMNS
+   MEGA MENU STRUCTURE
 ========================= */
 
 .mega-menu {
@@ -171,28 +181,42 @@
 }
 
 /* =========================
-   MOBILE FIXES
+   📱 MOBILE FIXES
 ========================= */
 
 @media (max-width: 768px) {
 
-  /* hide search */
-  .nav-search-wrapper {
-    display: none;
-  }
-
-  /* stack navbar tighter */
+  /* STACK CONTENT */
   .nav-container {
+    flex-wrap: wrap;
     padding: 10px 4%;
+    gap: 10px;
   }
 
-  /* shrink links */
-  .nav-links a,
-  .nav-link {
+  /* LOGO ROW */
+  .logo {
+    flex: 1;
+  }
+
+  /* SEARCH → FULL WIDTH */
+  .nav-search-wrapper {
+    width: 100%;
+    max-width: 100%;
+    order: 3;
+  }
+
+  .nav-search-wrapper input {
+    width: 100%;
+    padding: 10px 14px;
     font-size: 1rem;
   }
 
-  /* ❌ disable mega menus on mobile */
+  /* LINKS (SMALLER) */
+  .nav-links {
+    gap: 16px;
+  }
+
+  /* ❌ DISABLE MEGA MENU ON MOBILE */
   .mega-menu,
   .mega-menu-level1 {
     display: none !important;

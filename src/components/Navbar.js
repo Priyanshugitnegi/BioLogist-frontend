@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
-import axios from "axios";
+import api from "../api/axios";
 import { useCart } from "../contexts/CartContext";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
@@ -17,17 +17,19 @@ const Navbar = () => {
 
   /* ---------------- FETCH CATEGORIES (FIXED) ---------------- */
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/categories/")
+    api
+      .get("/api/categories/")
       .then((res) => {
         const data = Array.isArray(res.data)
           ? res.data
           : res.data.results || [];
-
+  
         setCategories(data);
         setActiveCategory(data[0] || null);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch categories:", err);
+      });
   }, []);
 
   /* ---------------- HOVER HANDLERS ---------------- */

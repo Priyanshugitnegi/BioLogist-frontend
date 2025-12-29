@@ -23,7 +23,6 @@ const Navbar = () => {
         const data = Array.isArray(res.data)
           ? res.data
           : res.data.results || [];
-
         setCategories(data);
         setActiveCategory(data[0] || null);
       })
@@ -69,20 +68,24 @@ const Navbar = () => {
 
         {/* NAV LINKS */}
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
 
-          {/* PRODUCTS MEGA MENU */}
+          {/* PRODUCTS (CLICK + HOVER) */}
           <li
             className="mega-dropdown"
             onMouseEnter={openMenu}
             onMouseLeave={closeMenu}
           >
-            <span className="nav-link">Products</span>
+            {/* 🔥 CLICK → /products */}
+            <Link to="/products" className="nav-link">
+              Products
+            </Link>
 
             {showMegaMenu && (
               <div className="mega-menu">
-
-                {/* ===== LEFT: CATEGORIES ===== */}
+                {/* LEFT: CATEGORIES */}
                 <div className="mega-left">
                   <div
                     className="mega-cat"
@@ -109,7 +112,7 @@ const Navbar = () => {
                   ))}
                 </div>
 
-                {/* ===== RIGHT: SUBCATEGORIES ===== */}
+                {/* RIGHT: SUBCATEGORIES */}
                 <div className="mega-right">
                   {activeCategory?.subcategories?.length ? (
                     activeCategory.subcategories.map((sub) => (
@@ -129,12 +132,13 @@ const Navbar = () => {
                     </div>
                   )}
                 </div>
-
               </div>
             )}
           </li>
 
-          <li><Link to="/enquiry">Enquiry</Link></li>
+          <li>
+            <Link to="/enquiry">Enquiry</Link>
+          </li>
 
           {/* CART */}
           <li className="cart-item">

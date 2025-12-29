@@ -13,11 +13,11 @@
 .nav-container {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 14px 32px;
+  padding: clamp(10px, 2vh, 14px) 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
+  gap: 2%;
 }
 
 /* =========================
@@ -27,15 +27,15 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.6rem;
   text-decoration: none;
   color: #1f2933;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
   font-weight: 700;
 }
 
 .logo img {
-  height: 42px;
+  height: clamp(32px, 7vw, 42px);
 }
 
 /* =========================
@@ -44,7 +44,7 @@
 
 .nav-search-wrapper {
   flex: 1;
-  max-width: 520px;
+  max-width: 36%;
 }
 
 /* =========================
@@ -54,7 +54,7 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: clamp(14px, 2vw, 26px);
   list-style: none;
 }
 
@@ -62,7 +62,7 @@
 .nav-link {
   text-decoration: none;
   font-weight: 500;
-  font-size: 15px;
+  font-size: clamp(14px, 1.2vw, 15px);
   color: #1f2933;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -94,31 +94,34 @@
 }
 
 /* =========================
-   MEGA DROPDOWN
+   MEGA DROPDOWN (DESKTOP ONLY)
 ========================= */
 
 .mega-dropdown {
   position: relative;
 }
 
-/* MAIN MENU */
-.mega-menu {
+.mega-menu,
+.mega-menu-level1 {
   position: absolute;
   top: 54px;
   left: 0;
-  width: 620px;
   background: #ecfbf6;
   border-radius: 14px;
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
-  display: flex;
-  overflow: hidden;
   z-index: 2000;
   animation: fadeIn 0.15s ease;
 }
 
 /* =========================
-   LEFT COLUMN – CATEGORIES
+   MEGA MENU COLUMNS
 ========================= */
+
+.mega-menu {
+  width: 620px;
+  display: flex;
+  overflow: hidden;
+}
 
 .mega-left {
   width: 45%;
@@ -127,91 +130,26 @@
   border-right: 1px solid #d4ebe4;
 }
 
-.mega-cat {
-  padding: 12px 18px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: #1f2933;
-  transition: background 0.2s ease;
-}
-
-.mega-cat:hover {
-  background: #d0efe6;
-}
-
-.mega-cat.active {
-  background: #c2eadf;
-  font-weight: 600;
-}
-
-.cat-count {
-  font-size: 12px;
-  color: #3a8f7a;
-}
-
-/* =========================
-   RIGHT COLUMN – SUBCATEGORIES
-========================= */
-
 .mega-right {
   width: 55%;
   padding: 16px;
   background: #f7fdfb;
 }
 
-.mega-sub {
-  padding: 10px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #1f2933;
-  border-radius: 6px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.mega-sub:hover {
-  background: #eefaf6;
-  color: #5b2cb5;
-}
-
-.mega-empty {
-  font-size: 14px;
-  color: #6b7280;
-  padding: 12px;
-}
-
 /* =========================
-   SIMPLE SINGLE COLUMN MENU
-   (fallback / current use)
+   CATEGORY ITEMS
 ========================= */
 
-.mega-menu-level1.single-column {
-  position: absolute;
-  top: 54px;
-  left: 0;
-  min-width: 260px;
-  background: #ecfbf6;
-  border-radius: 12px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
-  padding: 8px;
-  z-index: 2000;
-  animation: fadeIn 0.15s ease;
-}
-
+.mega-cat,
+.mega-sub,
 .category-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #1f2933;
   font-size: 14px;
-  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
 }
 
+.mega-cat:hover,
+.mega-sub:hover,
 .category-item:hover {
   background: #dff3ee;
   color: #5b2cb5;
@@ -229,5 +167,34 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE FIXES
+========================= */
+
+@media (max-width: 768px) {
+
+  /* hide search */
+  .nav-search-wrapper {
+    display: none;
+  }
+
+  /* stack navbar tighter */
+  .nav-container {
+    padding: 10px 4%;
+  }
+
+  /* shrink links */
+  .nav-links a,
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  /* ❌ disable mega menus on mobile */
+  .mega-menu,
+  .mega-menu-level1 {
+    display: none !important;
   }
 }

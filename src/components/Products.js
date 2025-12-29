@@ -17,6 +17,7 @@ const normalize = (str) =>
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [totalCount, setTotalCount] = useState(0); // ✅ NEW
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -27,14 +28,17 @@ const Products = () => {
 
   /* ---------------- FETCH DATA ---------------- */
   useEffect(() => {
-    // PRODUCTS
+    // PRODUCTS (paginated-safe)
     api
       .get("/api/products/")
       .then((res) => {
-        const data = Array.isArray(res.data)
-          ? res.data
-          : res.data.results || [];
-        setProducts(data);
+        if (Array.isArray(res.data)) {
+          setProducts(res.data);
+          setTotalCount(res.data.length);
+        } else {
+          setProducts(res.data.results || []);
+          setTotalCount(res.data.count || 0);
+        }
       })
       .catch(console.error);
 
@@ -54,14 +58,17 @@ const Products = () => {
   const filteredProducts = useMemo(() => {
     let list = [...products];
 
-    // CATEGORY FILTER
+    // CATEGORY FILTER (slug → id)
     if (categorySlug !== "all") {
-      const normalized = normalize(categorySlug);
-      list = list.filter(
-        (p) =>
-          p.category_slug &&
-          normalize(p.category_slug) === normalized
+      const selectedCategory = categories.find(
+        (c) => c.slug === categorySlug
       );
+
+      if (selectedCategory) {
+        list = list.filter(
+          (p) => String(p.category) === String(selectedCategory.id)
+        );
+      }
     }
 
     // SUBCATEGORY FILTER
@@ -89,7 +96,7 @@ const Products = () => {
     }
 
     return list;
-  }, [products, categorySlug, subId, searchQuery]);
+  }, [products, categories, categorySlug, subId, searchQuery]);
 
   /* ---------------- IMAGE LOGIC ---------------- */
   const getProductImage = (product) => {
@@ -120,7 +127,7 @@ const Products = () => {
           }`}
         >
           All Products
-          <span>{products.length}</span>
+          <span>{totalCount}</span> {/* ✅ FIXED */}
         </Link>
 
         {categories.map((cat) => (

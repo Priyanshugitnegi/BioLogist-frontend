@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
-import "./Contact.css";
+import api from "../api/axios";
+import "./Enquiry.css";
 
-const Contact = () => {
+const Enquiry = () => {
   const location = useLocation();
-  const enquiry = location.state; // passed from Enquire Now
+  const enquiry = location.state;
 
   const [form, setForm] = useState({
     name: "",
@@ -23,7 +23,6 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔒 Safety check
     if (!enquiry?.productId || !enquiry?.variantId) {
       alert("Missing product information");
       return;
@@ -34,26 +33,18 @@ const Contact = () => {
       variant: Number(enquiry.variantId),
       name: form.name,
       email: form.email,
-      phone: form.company, // optional reuse
+      phone: form.company,
       message: form.message,
     };
 
     try {
       setLoading(true);
-
-      await axios.post(
-        "http://127.0.0.1:8000/api/enquiry/",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-
-      alert("Enquiry sent successfully!");
+      await api.post("/api/enquiry/", payload);
+      alert("Enquiry submitted successfully!");
       setForm({ name: "", email: "", company: "", message: "" });
     } catch (err) {
-      console.error("Enquiry error:", err.response?.data || err);
-      alert("Failed to send enquiry. Check console.");
+      console.error(err.response?.data || err.message);
+      alert("Failed to submit enquiry");
     } finally {
       setLoading(false);
     }
@@ -62,12 +53,11 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <div className="contact-container">
-        <h1>Contact Us</h1>
+        <h1>Product Enquiry</h1>
         <p className="subtitle">
-          Get in touch with our team for pricing, technical support, or bulk enquiries.
+          Submit an enquiry for pricing, availability, or technical details.
         </p>
 
-        {/* PRODUCT CONTEXT */}
         {enquiry && (
           <div className="enquiry-context">
             <h3>Enquiry Details</h3>
@@ -77,7 +67,6 @@ const Contact = () => {
           </div>
         )}
 
-        {/* CONTACT FORM */}
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <input
@@ -88,7 +77,6 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
             />
-
             <input
               type="email"
               name="email"
@@ -116,7 +104,7 @@ const Contact = () => {
           />
 
           <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send Enquiry"}
+            {loading ? "Submitting..." : "Submit Enquiry"}
           </button>
         </form>
       </div>
@@ -124,4 +112,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Enquiry;

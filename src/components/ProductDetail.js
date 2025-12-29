@@ -131,7 +131,7 @@ const ProductDetail = () => {
           <button
             className="enquire-btn"
             onClick={() =>
-              navigate("/contact", {
+              navigate("/enquiry", {
                 state: {
                   productId: product.id,
                   variantId: selectedVariant?.id || null,

@@ -6,7 +6,7 @@ import { useCart } from "../contexts/CartContext";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 import SearchDropdown from "./SearchDropdown";
-import { isAuthenticated, logout } from "../utils/auth"; // ✅ ADD
+import { isAuthenticated, logout } from "./utils/auth"; // ✅ ADD
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);

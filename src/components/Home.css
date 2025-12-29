@@ -6,48 +6,58 @@
 .home-container {
   max-width: 1200px;
   margin: auto;
-  padding: 0 24px;
+  padding: 0 5%;
 }
 
-/* HERO */
+/* =========================
+   HERO SECTION (FIXED)
+   ========================= */
 .home-hero {
   background: linear-gradient(135deg, #e8f5ef, #f4edff);
-  padding: 100px 0;
+  padding: 10vh 0;
   text-align: center;
 }
 
 .home-title {
-  font-size: 52px;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
   font-weight: 800;
   color: #1f2937;
   line-height: 1.15;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .home-title span {
-  color: #6b21a8; /* purple */
+  display: block;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  color: #6b21a8;
 }
 
 .home-subtitle {
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 3.5vw, 1.15rem);
   color: #4b5563;
-  max-width: 720px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
 .home-actions {
-  margin-top: 36px;
+  margin-top: 2.2rem;
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+   ========================= */
 .btn-primary {
   background: linear-gradient(135deg, #22c55e, #6b21a8);
   color: white;
-  padding: 14px 28px;
+  padding: 0.9em 1.8em;
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
@@ -61,82 +71,88 @@
 .btn-outline {
   border: 2px solid #6b21a8;
   color: #6b21a8;
-  padding: 12px 26px;
+  padding: 0.85em 1.7em;
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
 }
 
-/* TRUST */
+/* =========================
+   TRUST SECTION
+   ========================= */
 .home-trust {
   background: white;
-  padding: 70px 0;
+  padding: 8vh 0;
 }
 
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 .trust-card {
   background: #f9fafb;
   border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  padding: 1.6rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
 }
 
 .trust-card h3 {
   color: #15803d;
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
 }
 
-/* SOLUTIONS */
+/* =========================
+   SOLUTIONS SECTION
+   ========================= */
 .home-solutions {
-  padding: 80px 0;
+  padding: 9vh 0;
 }
 
 .section-title {
   text-align: center;
-  font-size: 36px;
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
   font-weight: 700;
-  margin-bottom: 48px;
+  margin-bottom: 3rem;
   color: #111827;
 }
 
 .solutions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 28px;
+  gap: 1.8rem;
 }
 
 .solution-box {
   background: white;
-  padding: 28px;
+  padding: 1.8rem;
   border-radius: 16px;
   border-left: 5px solid #22c55e;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
 }
 
 .solution-box h4 {
   color: #6b21a8;
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
 }
 
-/* CTA */
+/* =========================
+   CTA SECTION
+   ========================= */
 .home-cta {
-  padding: 80px 0;
+  padding: 9vh 5%;
 }
 
 .cta-box {
   background: linear-gradient(135deg, #22c55e, #6b21a8);
   color: white;
   border-radius: 18px;
-  padding: 60px;
+  padding: clamp(2.5rem, 6vw, 4rem);
   text-align: center;
 }
 
 .cta-box h2 {
-  font-size: 32px;
-  margin-bottom: 24px;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  margin-bottom: 1.5rem;
 }

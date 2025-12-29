@@ -1,194 +1,161 @@
 /* ===============================
-   PRODUCTS PAGE – ENTERPRISE
+   PAGE WRAPPER
 ================================ */
-
 .products-page {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 70px 40px 90px;
-  background: #ffffff;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  padding: 32px 5%;
+  background: #f8fafc;
+  min-height: 100vh;
 }
 
 /* ===============================
    HEADER
 ================================ */
-
 .products-header {
   text-align: center;
-  margin-bottom: 42px;
+  margin-bottom: 32px;
 }
 
 .products-header h1 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-  color: #0f172a;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
 .products-header p {
-  margin-top: 10px;
-  font-size: 0.95rem;
+  margin-top: 8px;
+  font-size: 15px;
   color: #64748b;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ===============================
    CATEGORY BAR
 ================================ */
-
 .category-bar {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
-  justify-content: center;
-  margin-bottom: 48px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
 }
 
+.category-bar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.category-bar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* CATEGORY PILL */
 .category-pill {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  font-size: 0.8rem;
+  padding: 8px 14px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 999px;
+  color: #334155;
   background: #ffffff;
-  color: #475569;
   border: 1px solid #e2e8f0;
-  cursor: pointer;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .category-pill span {
-  font-size: 0.75rem;
-  color: #64748b;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
 }
 
+/* ACTIVE / HOVER */
 .category-pill:hover {
   background: #f1f5f9;
 }
 
 .category-pill.active {
-  background: #0a5bd8;
+  background: #1e293b;
   color: #ffffff;
-  border-color: #0a5bd8;
+  border-color: #1e293b;
 }
 
 .category-pill.active span {
-  color: #dbeafe;
+  background: #475569;
+  color: #ffffff;
 }
 
 /* ===============================
-   PRODUCT GRID
+   PRODUCTS GRID
 ================================ */
-
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 36px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
 }
 
 /* ===============================
    PRODUCT CARD
 ================================ */
-
 .product-card {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 16px;
   text-decoration: none;
   color: inherit;
-  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
-/* ===============================
-   IMAGE
-================================ */
-
-.product-image {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-image img {
-  max-height: 160px;
+/* IMAGE */
+.product-card img {
+  width: 100%;
+  height: 160px;
   object-fit: contain;
+  margin-bottom: 12px;
 }
 
-/* ===============================
-   PRODUCT INFO
-================================ */
-
-.product-info {
-  margin-top: 16px;
-}
-
-.product-info h3 {
-  font-size: 0.95rem;
+/* INFO */
+.product-card h3 {
+  font-size: 15px;
   font-weight: 600;
-  color: #0f172a;
-  line-height: 1.35;
+  color: #1e293b;
+  margin-bottom: 4px;
 }
 
-.product-info .catalog {
-  margin-top: 6px;
-  font-size: 0.8rem;
+.product-card p {
+  font-size: 13px;
   color: #64748b;
-}
-
-.product-info .variants {
-  margin-top: 6px;
-  font-size: 0.8rem;
-  color: #0a5bd8;
-  font-weight: 500;
 }
 
 /* ===============================
    EMPTY STATE
 ================================ */
-
-.empty-state {
+.no-products {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 70px 0;
-  font-size: 0.9rem;
+  font-size: 15px;
   color: #64748b;
+  padding: 40px 0;
 }
 
 /* ===============================
    RESPONSIVE
 ================================ */
-
-@media (max-width: 900px) {
-  .products-page {
-    padding: 50px 24px 70px;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .products-header h1 {
-    font-size: 1.8rem;
+    font-size: 26px;
   }
 
   .products-grid {
-    gap: 24px;
-  }
-
-  .product-image img {
-    max-height: 140px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }

@@ -6,12 +6,8 @@ import "./Products.css";
 import kitBoxImg from "../assets/kit box.jpeg";
 import bufferBottleImg from "../assets/buffer bottle.jpeg";
 
-const normalize = (str) =>
-  str?.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
   const [categories, setCategories] = useState([]);
 
   const location = useLocation();
@@ -21,35 +17,50 @@ const Products = () => {
   const subId = params.get("sub");
   const searchQuery = params.get("q")?.toLowerCase() || "";
 
-  /* ---------------- FETCH DATA ---------------- */
+  /* =======================
+     FETCH ALL PRODUCTS
+     ======================= */
   useEffect(() => {
-    // PRODUCTS (paginated)
-    api.get("/api/products/")
-      .then((res) => {
-        setProducts(res.data.results || []);
-        setTotalCount(res.data.count || 0);
-      })
-      .catch(console.error);
+    const fetchAllProducts = async () => {
+      let all = [];
+      let url = "/api/products/";
 
-    // CATEGORIES
-    api.get("/api/categories/")
-      .then((res) => {
-        setCategories(res.data.results || []);
-      })
+      while (url) {
+        const res = await api.get(url);
+        all = [...all, ...res.data.results];
+        url = res.data.next; // pagination magic
+      }
+
+      setProducts(all);
+    };
+
+    fetchAllProducts().catch(console.error);
+  }, []);
+
+  /* =======================
+     FETCH CATEGORIES
+     ======================= */
+  useEffect(() => {
+    api
+      .get("/api/categories/")
+      .then((res) => setCategories(res.data.results || []))
       .catch(console.error);
   }, []);
 
-  /* ---------------- FILTER ---------------- */
+  /* =======================
+     FILTER LOGIC (CORRECT)
+     ======================= */
   const filteredProducts = useMemo(() => {
     let list = [...products];
 
     if (categorySlug !== "all") {
-      const selected = categories.find(
-        (c) => normalize(c.slug) === normalize(categorySlug)
+      const selectedCategory = categories.find(
+        (c) => c.slug === categorySlug
       );
-      if (selected) {
+
+      if (selectedCategory) {
         list = list.filter(
-          (p) => String(p.category) === String(selected.id)
+          (p) => String(p.category) === String(selectedCategory.id)
         );
       }
     }
@@ -61,18 +72,21 @@ const Products = () => {
     }
 
     if (searchQuery) {
-      list = list.filter(
-        (p) =>
-          p.name?.toLowerCase().includes(searchQuery) ||
-          p.variants?.some((v) =>
-            v.catalog_number?.toLowerCase().includes(searchQuery)
-          )
-      );
+      list = list.filter((p) => {
+        const nameMatch = p.name?.toLowerCase().includes(searchQuery);
+        const variantMatch = p.variants?.some((v) =>
+          v.catalog_number?.toLowerCase().includes(searchQuery)
+        );
+        return nameMatch || variantMatch;
+      });
     }
 
     return list;
   }, [products, categories, categorySlug, subId, searchQuery]);
 
+  /* =======================
+     IMAGE LOGIC
+     ======================= */
   const getProductImage = (product) => {
     const isKit = product.variants?.some((v) =>
       v.quantity?.toLowerCase().includes("kit")
@@ -87,14 +101,15 @@ const Products = () => {
         <p>Premium molecular biology reagents trusted worldwide</p>
       </header>
 
-      {/* CATEGORY BAR */}
       <div className="category-bar">
         <Link
           to="/products"
-          className={`category-pill ${categorySlug === "all" ? "active" : ""}`}
+          className={`category-pill ${
+            categorySlug === "all" ? "active" : ""
+          }`}
         >
           All Products
-          <span>{totalCount}</span>
+          <span>{products.length}</span>
         </Link>
 
         {categories.map((cat) => (
@@ -102,7 +117,7 @@ const Products = () => {
             key={cat.id}
             to={`/products?category=${cat.slug}`}
             className={`category-pill ${
-              normalize(categorySlug) === normalize(cat.slug) ? "active" : ""
+              cat.slug === categorySlug ? "active" : ""
             }`}
           >
             {cat.name}
@@ -111,27 +126,16 @@ const Products = () => {
         ))}
       </div>
 
-      {/* GRID */}
       <section className="products-grid">
-        {filteredProducts.length === 0 && (
-          <div className="no-products">No products found.</div>
-        )}
-
         {filteredProducts.map((product) => (
           <Link
             key={product.id}
             to={`/product/${product.slug}`}
             className="product-card"
           >
-            <div className="product-image">
-              <img src={getProductImage(product)} alt={product.name} />
-            </div>
-            <div className="product-info">
-              <h3>{product.name}</h3>
-              <p className="variants">
-                {product.variants?.length || 0} variants
-              </p>
-            </div>
+            <img src={getProductImage(product)} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.variants?.length || 0} variants</p>
           </Link>
         ))}
       </section>

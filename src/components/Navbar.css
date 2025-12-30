@@ -1,18 +1,18 @@
 /* =========================
-   ROOT COLORS (STABLE)
+   ROOT COLORS (BALANCED)
 ========================= */
 
 :root {
-  --purple-main: #6d28d9;        /* soft purple */
-  --purple-light: #ede9fe;       /* very light purple */
+  --purple-main: #6d28d9;        /* brand purple */
+  --purple-light: #ede9fe;       /* soft purple bg */
 
   --green-main: #10b981;         /* biotech green */
-  --green-soft: #f0fdf4;         /* navbar bg */
-  --green-hover: #dcfce7;        /* hover bg */
+  --green-navbar: #e6f6f0;       /* 🔥 light green (visible) */
+  --green-hover: #d1fae5;        /* hover bg */
 
   --text-dark: #1f2937;
   --text-muted: #4b5563;
-  --border-light: #e5e7eb;
+  --border-light: #dbe7e1;
 }
 
 /* =========================
@@ -21,15 +21,14 @@
 
 .navbar {
   background: linear-gradient(
-    90deg,
-    var(--green-soft),
-    #ffffff
+    180deg,
+    var(--green-navbar) 0%,
+    #f3fbf8 100%
   );
   border-bottom: 1px solid var(--border-light);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(6px);
 }
 
 .nav-container {
@@ -86,20 +85,20 @@
   padding: 0;
 }
 
-.nav-links li a,
-.nav-links li {
+.nav-links li,
+.nav-links li a {
   font-size: 14px;
   font-weight: 500;
   color: var(--text-dark);
   text-decoration: none;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 8px;
   transition: all 0.2s ease;
 }
 
-.nav-links li a:hover,
-.nav-links li:hover {
+.nav-links li:hover,
+.nav-links li a:hover {
   background: var(--green-hover);
   color: var(--purple-main);
 }
@@ -149,13 +148,13 @@
   overflow: hidden;
 }
 
-/* LEFT */
+/* LEFT PANEL */
 
 .mega-left {
   width: 55%;
   background: linear-gradient(
     180deg,
-    var(--green-soft),
+    var(--green-navbar),
     var(--purple-light)
   );
   padding: 0.75rem;
@@ -178,7 +177,7 @@
   color: var(--purple-main);
 }
 
-/* RIGHT */
+/* RIGHT PANEL */
 
 .mega-right {
   width: 45%;
@@ -211,14 +210,24 @@
   .nav-search-wrapper {
     display: none;
   }
+
+  .nav-links {
+    gap: 0.4rem;
+  }
+
+  .nav-links li,
+  .nav-links li a {
+    padding: 10px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    gap: 0.6rem;
+  .logo img {
+    height: 32px;
   }
 
   .logo span {
-    font-size: 16px;
+    font-size: 15px;
   }
 }

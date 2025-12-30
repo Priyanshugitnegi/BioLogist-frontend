@@ -1,18 +1,19 @@
 /* =========================
-   ROOT COLORS (BALANCED)
+   ROOT COLORS (STRONGER GREEN)
 ========================= */
 
 :root {
   --purple-main: #6d28d9;        /* brand purple */
-  --purple-light: #ede9fe;       /* soft purple bg */
+  --purple-light: #ede9fe;
 
-  --green-main: #10b981;         /* biotech green */
-  --green-navbar: #e6f6f0;       /* 🔥 light green (visible) */
-  --green-hover: #d1fae5;        /* hover bg */
+  /* 🔥 clearly visible green */
+  --green-main: #10b981;
+  --green-navbar: #d1f3e8;       /* NOT pale, NOT neon */
+  --green-hover: #b7ead9;
 
   --text-dark: #1f2937;
   --text-muted: #4b5563;
-  --border-light: #dbe7e1;
+  --border-light: #cfe8df;
 }
 
 /* =========================
@@ -23,7 +24,7 @@
   background: linear-gradient(
     180deg,
     var(--green-navbar) 0%,
-    #f3fbf8 100%
+    #e6f7f1 100%
   );
   border-bottom: 1px solid var(--border-light);
   position: sticky;
@@ -31,10 +32,14 @@
   z-index: 1000;
 }
 
+/* =========================
+   CONTAINER
+========================= */
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,7 +85,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.1rem;
   margin: 0;
   padding: 0;
 }
@@ -93,10 +98,11 @@
   text-decoration: none;
   cursor: pointer;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: all 0.2s ease;
 }
 
+/* Hover / Active */
 .nav-links li:hover,
 .nav-links li a:hover {
   background: var(--green-hover);
@@ -143,12 +149,12 @@
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
   display: flex;
   overflow: hidden;
 }
 
-/* LEFT PANEL */
+/* LEFT */
 
 .mega-left {
   width: 55%;
@@ -168,7 +174,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease;
 }
 
 .mega-cat:hover,
@@ -177,7 +183,7 @@
   color: var(--purple-main);
 }
 
-/* RIGHT PANEL */
+/* RIGHT */
 
 .mega-right {
   width: 45%;
@@ -190,7 +196,6 @@
   padding: 0.4rem 0.25rem;
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.15s ease;
 }
 
 .mega-sub:hover {
@@ -203,7 +208,7 @@
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE FRIENDLY
 ========================= */
 
 @media (max-width: 900px) {

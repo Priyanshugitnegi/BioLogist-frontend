@@ -117,6 +117,33 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= ADVERTISEMENT VIDEO ================= */}
+      <section className="home-video">
+        <div className="home-container video-wrapper">
+          <div className="video-text">
+            <h2>Built for Research. Trusted by Labs.</h2>
+            <p>
+              BioLogist Private Limited delivers reliable molecular biology
+              solutions for research, diagnostics, and innovation.
+            </p>
+
+            <Link to="/products" className="btn-primary">
+              Explore Products
+            </Link>
+          </div>
+
+          <div className="video-box">
+            <video
+              src="/videos/video1.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ================= SOLUTIONS ================= */}
       <section className="home-solutions">
         <div className="home-container">

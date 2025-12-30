@@ -5,7 +5,7 @@ import "./Enquiry.css";
 
 const Enquiry = () => {
   const location = useLocation();
-  const enquiry = location.state;
+  const enquiry = location.state || null;
 
   const [form, setForm] = useState({
     name: "",
@@ -15,6 +15,7 @@ const Enquiry = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,28 +24,27 @@ const Enquiry = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!enquiry?.productId || !enquiry?.variantId) {
-      alert("Missing product information");
-      return;
-    }
-
+    // ✅ ALWAYS ALLOW SUBMISSION
     const payload = {
-      product: Number(enquiry.productId),
-      variant: Number(enquiry.variantId),
       name: form.name,
       email: form.email,
       phone: form.company,
       message: form.message,
+
+      // ✅ PRODUCT ENQUIRY (optional)
+      product: enquiry?.productId ? Number(enquiry.productId) : null,
+      variant: enquiry?.variantId ? Number(enquiry.variantId) : null,
     };
 
     try {
       setLoading(true);
       await api.post("/api/enquiry/", payload);
-      alert("Enquiry submitted successfully!");
+
+      setSuccess(true);
       setForm({ name: "", email: "", company: "", message: "" });
     } catch (err) {
       console.error(err.response?.data || err.message);
-      alert("Failed to submit enquiry");
+      alert("Failed to submit enquiry. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -53,17 +53,28 @@ const Enquiry = () => {
   return (
     <div className="contact-page">
       <div className="contact-container">
-        <h1>Product Enquiry</h1>
+        <h1>
+          {enquiry ? "Product Enquiry" : "General Enquiry"}
+        </h1>
+
         <p className="subtitle">
           Submit an enquiry for pricing, availability, or technical details.
         </p>
 
+        {/* ✅ PRODUCT CONTEXT (ONLY IF EXISTS) */}
         {enquiry && (
           <div className="enquiry-context">
             <h3>Enquiry Details</h3>
             <p><strong>Product:</strong> {enquiry.productName}</p>
             <p><strong>Catalog No:</strong> {enquiry.catalog}</p>
             <p><strong>Variant:</strong> {enquiry.variant}</p>
+          </div>
+        )}
+
+        {/* ✅ SUCCESS MESSAGE */}
+        {success && (
+          <div className="success-box">
+            ✅ Enquiry submitted successfully. Our team will contact you soon.
           </div>
         )}
 
@@ -77,6 +88,7 @@ const Enquiry = () => {
               value={form.name}
               onChange={handleChange}
             />
+
             <input
               type="email"
               name="email"

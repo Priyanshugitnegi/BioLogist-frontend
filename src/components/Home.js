@@ -73,28 +73,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= TRUST STRIP ================= */}
-      <section className="home-trust">
-        <div className="home-container trust-grid">
-          <div className="trust-card">
-            <h3>High Purity</h3>
-            <p>Optimized formulations ensuring maximum yield and integrity.</p>
-          </div>
-          <div className="trust-card">
-            <h3>Validated Protocols</h3>
-            <p>Tested across multiple sample types and workflows.</p>
-          </div>
-          <div className="trust-card">
-            <h3>Scalable Workflows</h3>
-            <p>From single samples to high-throughput applications.</p>
-          </div>
-          <div className="trust-card">
-            <h3>Expert Support</h3>
-            <p>Real scientists. Real support. When you need it.</p>
-          </div>
-        </div>
-      </section>
-
+      
       {/* ================= PRODUCT CATEGORIES ================= */}
       <section className="category-section">
         <h2 className="section-title">Product Categories</h2>
@@ -117,6 +96,29 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= TRUST STRIP ================= */}
+      <section className="home-trust">
+        <div className="home-container trust-grid">
+          <div className="trust-card">
+            <h3>High Purity</h3>
+            <p>Optimized formulations ensuring maximum yield and integrity.</p>
+          </div>
+          <div className="trust-card">
+            <h3>Validated Protocols</h3>
+            <p>Tested across multiple sample types and workflows.</p>
+          </div>
+          <div className="trust-card">
+            <h3>Scalable Workflows</h3>
+            <p>From single samples to high-throughput applications.</p>
+          </div>
+          <div className="trust-card">
+            <h3>Expert Support</h3>
+            <p>Real scientists. Real support. When you need it.</p>
+          </div>
+        </div>
+      </section>
+
+      
       {/* ================= ADVERTISEMENT VIDEO ================= */}
       <section className="home-video">
         <div className="home-container video-wrapper">

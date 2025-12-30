@@ -1,10 +1,26 @@
 /* =========================
-   GLOBAL
+   ROOT (SAME AS NAVBAR)
+========================= */
+:root {
+  --purple-main: #6d28d9;
+  --purple-light: #ede9fe;
+
+  --green-main: #10b981;
+  --green-bg: #d1f3e8;        /* 🔥 same strength as navbar */
+  --green-soft: #e6f7f1;
+  --green-hover: #b7ead9;
+
+  --text-dark: #1f2937;
+  --text-muted: #4b5563;
+  --border-light: #cfe8df;
+}
+
+/* =========================
+   BASE
 ========================= */
 .home-page {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
-  color: #1f2937;
-  background: #f9fafb;
+  background: #f7fbfa;
+  color: var(--text-dark);
 }
 
 .home-container {
@@ -18,7 +34,7 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 2.5rem;
-  color: #3b1d5a;
+  color: var(--purple-main);
 }
 
 /* =========================
@@ -27,9 +43,8 @@
 .home-hero {
   background: linear-gradient(
     135deg,
-    #e8f8f1 0%,
-    #efe7f6 50%,
-    #f4f1fb 100%
+    var(--green-bg),
+    var(--purple-light)
   );
   padding: 6rem 0;
 }
@@ -38,20 +53,19 @@
   font-size: 3rem;
   font-weight: 800;
   color: #2d0f46;
-  line-height: 1.2;
 }
 
 .home-title span {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #2f7d5c;
+  color: var(--green-main);
 }
 
 .home-subtitle {
   margin-top: 1.5rem;
   max-width: 600px;
   font-size: 1.05rem;
-  color: #4b5563;
+  color: var(--text-muted);
 }
 
 .home-actions {
@@ -61,88 +75,90 @@
   flex-wrap: wrap;
 }
 
+/* Buttons */
 .btn-primary {
-  background: linear-gradient(90deg, #2f7d5c, #5b2d8b);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--green-main),
+    var(--purple-main)
+  );
+  color: #fff;
   padding: 0.9rem 1.8rem;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(91, 45, 139, 0.25);
-}
-
-.btn-outline {
-  border: 2px solid #5b2d8b;
-  color: #5b2d8b;
-  padding: 0.85rem 1.8rem;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline {
+  border: 2px solid var(--purple-main);
+  color: var(--purple-main);
+  padding: 0.85rem 1.8rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .btn-outline:hover {
-  background: #5b2d8b;
-  color: white;
+  background: var(--purple-main);
+  color: #fff;
 }
 
 /* =========================
    TRUST STRIP
 ========================= */
 .home-trust {
-  background: #ffffff;
-  padding: 3.5rem 0;
+  background: var(--green-soft);
 }
 
 .trust-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
 .trust-card {
-  background: #f4fdf9;
-  border: 1px solid #d9f0e6;
-  border-radius: 14px;
-  padding: 1.8rem;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2rem;
   text-align: center;
 }
 
 .trust-card h3 {
-  color: #2f7d5c;
-  margin-bottom: 0.5rem;
+  color: var(--green-main);
 }
 
 .trust-card p {
-  color: #4b5563;
   font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 /* =========================
    CATEGORY SECTION
 ========================= */
 .category-section {
+  background: #f1fbf7;
   padding: 4rem 1.5rem;
-  background: #f8f9fc;
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 
 .category-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease;
 }
 
@@ -161,8 +177,8 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(45, 15, 70, 0.75),
-    rgba(45, 15, 70, 0.15)
+    rgba(16, 185, 129, 0.85),
+    rgba(109, 40, 217, 0.35)
   );
   display: flex;
   align-items: flex-end;
@@ -170,21 +186,19 @@
 }
 
 .category-overlay span {
-  color: white;
+  color: #fff;
   font-weight: 600;
-  font-size: 1rem;
 }
 
 /* =========================
-   VIDEO ADVERTISEMENT
+   VIDEO SECTION
 ========================= */
 .home-video {
   background: linear-gradient(
     135deg,
-    #eefaf4,
-    #f3eefb
+    var(--green-bg),
+    var(--purple-light)
   );
-  padding: 4.5rem 0;
 }
 
 .video-wrapper {
@@ -195,27 +209,23 @@
 }
 
 .video-text h2 {
+  color: var(--purple-main);
   font-size: 2.2rem;
-  color: #2d0f46;
-  margin-bottom: 1rem;
 }
 
 .video-text p {
-  color: #4b5563;
-  font-size: 1.05rem;
-  margin-bottom: 1.8rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
 }
 
 .video-box {
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
 }
 
 .video-box video {
   width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* =========================
@@ -232,29 +242,27 @@
 }
 
 .solution-box {
-  background: #f6faf8;
-  border: 1px solid #e2f1ea;
-  border-radius: 14px;
+  background: var(--green-soft);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
   padding: 2rem;
   text-align: center;
 }
 
 .solution-box h4 {
-  color: #5b2d8b;
-  margin-bottom: 0.6rem;
-}
-
-.solution-box p {
-  font-size: 0.95rem;
-  color: #4b5563;
+  color: var(--purple-main);
 }
 
 /* =========================
    CTA
 ========================= */
 .home-cta {
-  background: linear-gradient(90deg, #2f7d5c, #5b2d8b);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--green-main),
+    var(--purple-main)
+  );
+  color: #fff;
 }
 
 .cta-box {
@@ -263,7 +271,6 @@
 
 .cta-box h2 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
 }
 
 /* =========================
@@ -276,9 +283,5 @@
 
   .home-title {
     font-size: 2.3rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
   }
 }

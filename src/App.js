@@ -11,8 +11,8 @@ import Enquiry from "./components/Enquiry";
 import OrderSuccess from "./components/OrderSuccess";
 import About from "./components/About";
 
-import Login from "./pages/Login";     // ✅ CUSTOMER LOGIN
-import Signup from "./pages/Signup";   // ✅ CUSTOMER SIGNUP
+import Login from "./components/Login";     // ✅ CUSTOMER LOGIN
+import Signup from "./components/Signup";   // ✅ CUSTOMER SIGNUP
 
 import "./App.css";
 

@@ -66,4 +66,38 @@
     margin-bottom: 16px;
     font-size: 14px;
   }
+
+  /* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  .login-card,
+  .signup-card {
+    padding: 22px 18px;
+    border-radius: 8px;
+  }
+
+  .login-card h2,
+  .signup-card h2 {
+    font-size: 20px;
+  }
+
+  .login-card p,
+  .signup-card p {
+    font-size: 13px;
+  }
+
+  .login-card input,
+  .signup-card input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .login-card button,
+  .signup-card button {
+    font-size: 14px;
+    padding: 11px;
+  }
+}
+
   

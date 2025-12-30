@@ -4,7 +4,7 @@ import { ShoppingCart } from "lucide-react";
 
 import api from "../api/axios";
 import { useCart } from "../contexts/CartContext";
-import { useAuth } from "../contexts/AuthContext"; // ✅ USE CONTEXT
+import { useAuth } from "../contexts/AuthContext";
 
 import logo from "../assets/logo.png";
 import "./Navbar.css";
@@ -19,7 +19,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { cartCount } = useCart();
-  const { isAuthenticated, logout } = useAuth(); // ✅ FROM CONTEXT
+  const { isAuthenticated, logout } = useAuth();
 
   /* ================= FETCH CATEGORIES ================= */
   useEffect(() => {
@@ -67,10 +67,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
+
         {/* LOGO */}
         <Link to="/" className="logo">
-          <img src={logo} alt="BioLogist" />
-          <span>BioLogist</span>
+          <img src={logo} alt="BioLogist Private Limited" />
+          <span className="brand-text">BioLogist Pvt. Ltd.</span>
         </Link>
 
         {/* SEARCH */}
@@ -148,7 +149,7 @@ const Navbar = () => {
             <Link to="/enquiry">Enquiry</Link>
           </li>
 
-          {/* 🔐 AUTH */}
+          {/* AUTH */}
           {isAuthenticated ? (
             <li
               className="nav-link"

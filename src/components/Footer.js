@@ -19,14 +19,20 @@ const Footer = () => {
         {/* LOGO & DESCRIPTION */}
         <div className="footer-section logo-section">
           <Link to="/" className="footer-logo">
-            <img src={logo} alt="BioLogist" className="footer-logo-img" />
-            <span className="footer-brand">BioLogist</span>
+            <img
+              src={logo}
+              alt="BioLogist Private Limited"
+              className="footer-logo-img"
+            />
+            <span className="footer-brand">
+              BioLogist Private Limited
+            </span>
           </Link>
 
           <p className="footer-desc">
-            BioLogist delivers high-quality molecular biology kits, reagents,
-            and solutions designed for precision, reproducibility, and
-            efficiency in modern laboratories.
+            BioLogist Private Limited delivers high-quality molecular biology
+            kits, reagents, and solutions designed for precision,
+            reproducibility, and efficiency in modern laboratories.
           </p>
 
           <div className="social-links">
@@ -53,7 +59,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* PRODUCT CATEGORIES (REAL SLUGS) */}
+        {/* PRODUCT CATEGORIES */}
         <div className="footer-section">
           <h3 className="footer-title">Product Categories</h3>
           <ul className="footer-links">
@@ -108,7 +114,10 @@ const Footer = () => {
 
       {/* BOTTOM BAR */}
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} BioLogist. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} BioLogist Private Limited.
+          All rights reserved.
+        </p>
 
         <div className="footer-legal">
           <Link to="/privacy">Privacy Policy</Link>

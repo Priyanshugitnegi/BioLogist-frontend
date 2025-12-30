@@ -53,8 +53,8 @@ const Home = () => {
       <section className="home-hero">
         <div className="home-container">
           <h1 className="home-title">
-            Precision Biotech Solutions<br />
-            <span>Built for Modern Laboratories</span>
+            BioLogist Private Limited<br />
+            <span>Precision Biotech Solutions</span>
           </h1>
 
           <p className="home-subtitle">
@@ -95,7 +95,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= PRODUCT CATEGORIES (NEW) ================= */}
+      {/* ================= PRODUCT CATEGORIES ================= */}
       <section className="category-section">
         <h2 className="section-title">Product Categories</h2>
 

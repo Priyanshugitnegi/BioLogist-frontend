@@ -1,180 +1,41 @@
-.home-page {
-  background: #f8fafc;
-}
-
-/* CONTAINER */
-.home-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 5%;
-}
-
 /* =========================
-   HERO SECTION (FIXED)
-   ========================= */
-.home-hero {
-  background: linear-gradient(135deg, #e8f5ef, #f4edff);
-  padding: 10vh 0;
-  text-align: center;
+   HOME – CATEGORY SECTION
+========================= */
+
+.home {
+  width: 100%;
 }
 
-.home-title {
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  font-weight: 800;
-  color: #1f2937;
-  line-height: 1.15;
-  max-width: 90%;
-  margin: 0 auto;
-}
-
-.home-title span {
-  display: block;
-  font-size: clamp(2rem, 5.5vw, 3.2rem);
-  color: #6b21a8;
-}
-
-.home-subtitle {
-  margin-top: 1.5rem;
-  font-size: clamp(1rem, 3.5vw, 1.15rem);
-  color: #4b5563;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-
-.home-actions {
-  margin-top: 2.2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-/* =========================
-   BUTTONS
-   ========================= */
-.btn-primary {
-  background: linear-gradient(135deg, #22c55e, #6b21a8);
-  color: white;
-  padding: 0.9em 1.8em;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  border: 2px solid #6b21a8;
-  color: #6b21a8;
-  padding: 0.85em 1.7em;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* =========================
-   TRUST SECTION
-   ========================= */
-.home-trust {
-  background: white;
-  padding: 8vh 0;
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.trust-card {
-  background: #f9fafb;
-  border-radius: 14px;
-  padding: 1.6rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-}
-
-.trust-card h3 {
-  color: #15803d;
-  margin-bottom: 0.6rem;
-}
-
-/* =========================
-   SOLUTIONS SECTION
-   ========================= */
-.home-solutions {
-  padding: 9vh 0;
-}
-
-.section-title {
-  text-align: center;
-  font-size: clamp(1.8rem, 5vw, 2.3rem);
-  font-weight: 700;
-  margin-bottom: 3rem;
-  color: #111827;
-}
-
-.solutions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.8rem;
-}
-
-.solution-box {
-  background: white;
-  padding: 1.8rem;
-  border-radius: 16px;
-  border-left: 5px solid #22c55e;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
-}
-
-.solution-box h4 {
-  color: #6b21a8;
-  margin-bottom: 0.6rem;
-}
-
-/* =========================
-   CTA SECTION
-   ========================= */
-.home-cta {
-  padding: 9vh 5%;
-}
-
-.cta-box {
-  background: linear-gradient(135deg, #22c55e, #6b21a8);
-  color: white;
-  border-radius: 18px;
-  padding: clamp(2.5rem, 6vw, 4rem);
-  text-align: center;
-}
-
-.cta-box h2 {
-  font-size: clamp(1.8rem, 5vw, 2.2rem);
-  margin-bottom: 1.5rem;
-}
-
-
+/* Section wrapper */
 .category-section {
   padding: 3rem 1.5rem;
-  background: #f9fafb;
+  background-color: #f9fafb;
 }
 
+/* Section title */
 .section-title {
   text-align: center;
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 2rem;
+  color: #1f2937;
 }
+
+/* =========================
+   CATEGORY GRID
+========================= */
 
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
+/* =========================
+   CATEGORY CARD
+========================= */
 
 .category-card {
   position: relative;
@@ -182,6 +43,7 @@
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
+  background: #000;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -190,33 +52,59 @@
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Image */
 .category-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
+
+/* =========================
+   OVERLAY
+========================= */
 
 .category-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.2)
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.25)
   );
   display: flex;
   align-items: flex-end;
   padding: 1rem;
 }
 
+/* Overlay text */
 .category-overlay span {
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.3;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 24px;
+  }
+
+  .category-card {
+    height: 200px;
+  }
 }
 
 @media (max-width: 480px) {
   .category-card {
-    height: 190px;
+    height: 180px;
+  }
+
+  .category-overlay span {
+    font-size: 15px;
   }
 }

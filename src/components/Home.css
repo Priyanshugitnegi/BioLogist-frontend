@@ -5,6 +5,7 @@
 .home-page {
   width: 100%;
   overflow-x: hidden;
+  background-color: #f8fafc;
 }
 
 .home-container {
@@ -18,11 +19,15 @@
 ========================= */
 
 .home-hero {
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: #fff;
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #6d28d9,
+    #10b981
+  );
+  color: #ffffff;
   padding: 6rem 0;
 }
-
 
 .home-title {
   font-size: 44px;
@@ -31,7 +36,7 @@
 }
 
 .home-title span {
-  color: #9ddcff;
+  color: #a7f3d0;
 }
 
 .home-subtitle {
@@ -49,30 +54,35 @@
   flex-wrap: wrap;
 }
 
+/* Buttons */
+
 .btn-primary {
-  background: #2563eb;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #6d28d9, #10b981);
+  color: #ffffff;
+  padding: 0.75rem 1.6rem;
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #1d4ed8;
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .btn-outline {
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 0.7rem 1.5rem;
+  border: 2px solid #10b981;
+  color: #10b981;
+  padding: 0.7rem 1.6rem;
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(16, 185, 129, 0.15);
 }
 
 /* =========================
@@ -80,8 +90,8 @@
 ========================= */
 
 .home-trust {
-  background: #f1f5f9;
-  padding: 3rem 0;
+  background: #ecfdf5;
+  padding: 3.5rem 0;
 }
 
 .trust-grid {
@@ -91,29 +101,34 @@
 }
 
 .trust-card {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  padding: 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.12);
 }
 
 .trust-card h3 {
   font-size: 18px;
   margin-bottom: 0.5rem;
+  color: #065f46;
 }
 
 .trust-card p {
   font-size: 14px;
-  color: #4b5563;
+  color: #374151;
 }
 
 /* =========================
-   CATEGORY SECTION (NEW)
+   CATEGORY SECTION
 ========================= */
 
 .category-section {
   padding: 4rem 1.5rem;
-  background-color: #f9fafb;
+  background: linear-gradient(
+    180deg,
+    #f8fafc,
+    #ecfdf5
+  );
 }
 
 .section-title {
@@ -124,18 +139,22 @@
   color: #1f2937;
 }
 
+/* Category grid */
+
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  gap: 1.6rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Category card */
+
 .category-card {
   position: relative;
   height: 220px;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
   background: #000;
@@ -144,7 +163,9 @@
 
 .category-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 20px 40px rgba(109, 40, 217, 0.25),
+    0 12px 24px rgba(16, 185, 129, 0.25);
 }
 
 .category-card img {
@@ -154,13 +175,15 @@
   display: block;
 }
 
+/* Overlay */
+
 .category-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.25)
+    rgba(15, 23, 42, 0.8),
+    rgba(15, 23, 42, 0.25)
   );
   display: flex;
   align-items: flex-end;
@@ -186,19 +209,25 @@
 .solutions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 
 .solution-box {
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 1.75rem;
-  background: #f9fafb;
+  background: #f8fafc;
+  transition: box-shadow 0.25s ease;
+}
+
+.solution-box:hover {
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.15);
 }
 
 .solution-box h4 {
   font-size: 17px;
   margin-bottom: 0.5rem;
+  color: #4c1d95;
 }
 
 .solution-box p {
@@ -207,12 +236,12 @@
 }
 
 /* =========================
-   CTA STRIP
+   CTA SECTION
 ========================= */
 
 .home-cta {
-  background: linear-gradient(90deg, #1e3a8a, #2563eb);
-  color: #fff;
+  background: linear-gradient(90deg, #4c1d95, #10b981);
+  color: #ffffff;
   padding: 3.5rem 1.5rem;
 }
 

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 import api from "../api/axios";
+import { useAuth } from "../contexts/AuthContext";
+
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth(); // ✅ CONTEXT
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const res = await api.post("/api/auth/login/", {
@@ -19,20 +26,22 @@ const Login = () => {
         password,
       });
 
-      localStorage.setItem("access", res.data.access);
-      localStorage.setItem("refresh", res.data.refresh);
+      // 🔐 SAVE TOKENS VIA CONTEXT
+      login(res.data.access, res.data.refresh);
 
       navigate("/");
     } catch (err) {
       setError("Invalid username or password");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-page">
       <form className="login-card" onSubmit={handleSubmit}>
-        <h2>Admin Login</h2>
-        <p>Access BioLogist admin panel</p>
+        <h2>Customer Login</h2>
+        <p>Sign in to your BioLogist account</p>
 
         {error && <div className="login-error">{error}</div>}
 
@@ -52,7 +61,14 @@ const Login = () => {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+
+        <p className="login-footer">
+          Don’t have an account?{" "}
+          <Link to="/signup">Sign up</Link>
+        </p>
       </form>
     </div>
   );

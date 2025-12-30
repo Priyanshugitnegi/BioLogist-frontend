@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+
 import api from "../api/axios";
 import { useCart } from "../contexts/CartContext";
+import { useAuth } from "../contexts/AuthContext"; // ✅ USE CONTEXT
+
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 import SearchDropdown from "./SearchDropdown";
-import { isAuthenticated, logout } from "../utils/auth"; // ✅ ADD
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+
   const timeoutRef = useRef(null);
   const navigate = useNavigate();
+
   const { cartCount } = useCart();
+  const { isAuthenticated, logout } = useAuth(); // ✅ FROM CONTEXT
 
   /* ================= FETCH CATEGORIES ================= */
   useEffect(() => {
@@ -56,7 +61,7 @@ const Navbar = () => {
   /* ================= LOGOUT ================= */
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -75,7 +80,9 @@ const Navbar = () => {
 
         {/* NAV LINKS */}
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
 
           {/* PRODUCTS */}
           <li
@@ -137,10 +144,12 @@ const Navbar = () => {
             )}
           </li>
 
-          <li><Link to="/enquiry">Enquiry</Link></li>
+          <li>
+            <Link to="/enquiry">Enquiry</Link>
+          </li>
 
           {/* 🔐 AUTH */}
-          {isAuthenticated() ? (
+          {isAuthenticated ? (
             <li
               className="nav-link"
               style={{ cursor: "pointer" }}
@@ -149,7 +158,9 @@ const Navbar = () => {
               Logout
             </li>
           ) : (
-            <li><Link to="/login">Login</Link></li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
           )}
 
           {/* CART */}

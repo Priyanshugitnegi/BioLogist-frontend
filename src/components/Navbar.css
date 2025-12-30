@@ -7,7 +7,7 @@
   --purple-light: #ede9fe;
 
   --green-main: #10b981;
-  --green-navbar: #d1f3e8;     /* visible light green */
+  --green-navbar: #d1f3e8;
   --green-hover: #b7ead9;
 
   --text-dark: #1f2937;
@@ -16,7 +16,7 @@
 }
 
 /* =========================
-   NAVBAR BASE
+   DESKTOP NAVBAR (DEFAULT)
 ========================= */
 
 .navbar {
@@ -34,15 +34,13 @@
 .nav-container {
   max-width: 1200px;
   margin: auto;
-  padding: 0.9rem 1.2rem;
+  padding: 0.9rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* =========================
-   LOGO
-========================= */
+/* LOGO */
 
 .logo {
   display: flex;
@@ -52,34 +50,30 @@
 }
 
 .logo img {
-  height: 34px;
+  height: 36px;
 }
 
 .logo span {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--purple-main);
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH (DESKTOP ONLY) */
 
 .nav-search-wrapper {
   flex: 1;
   max-width: 420px;
-  margin: 0 1.5rem;
+  margin: 0 2rem;
 }
 
-/* =========================
-   NAV LINKS (DESKTOP)
-========================= */
+/* LINKS (DESKTOP) */
 
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1.1rem;
   margin: 0;
   padding: 0;
 }
@@ -92,7 +86,7 @@
   text-decoration: none;
   cursor: pointer;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: all 0.2s ease;
 }
 
@@ -102,9 +96,7 @@
   color: var(--purple-main);
 }
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 .cart-item {
   position: relative;
@@ -175,48 +167,59 @@
   padding: 0.75rem;
 }
 
-/* =========================
-   MOBILE FIX (IMPORTANT)
-========================= */
+/* =========================================================
+   MOBILE ONLY OVERRIDES (DOES NOT AFFECT DESKTOP)
+========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+
+  /* hide search */
   .nav-search-wrapper {
     display: none;
   }
-}
 
-@media (max-width: 768px) {
+  /* allow wrapping */
   .nav-container {
     flex-wrap: wrap;
   }
 
-  /* Stack links */
+  /* stack nav links */
   .nav-links {
     width: 100%;
     margin-top: 0.8rem;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 0.4rem;
   }
 
+  /* bigger tap targets */
   .nav-links li,
   .nav-links li a {
     padding: 10px 14px;
     font-size: 13px;
   }
 
-  /* Disable mega menu on mobile */
+  /* disable mega menu on mobile */
   .mega-menu {
     display: none !important;
   }
-}
 
-@media (max-width: 480px) {
+  /* logo slightly smaller */
+  .logo img {
+    height: 32px;
+  }
+
   .logo span {
     font-size: 15px;
   }
+}
 
-  .logo img {
-    height: 30px;
+/* EXTRA SMALL PHONES */
+
+@media (max-width: 480px) {
+  .nav-links li,
+  .nav-links li a {
+    padding: 10px 12px;
+    font-size: 12px;
   }
 }

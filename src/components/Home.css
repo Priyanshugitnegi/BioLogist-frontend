@@ -1,29 +1,133 @@
 /* =========================
-   HOME – CATEGORY SECTION
+   BASE
 ========================= */
 
-.home {
+.home-page {
   width: 100%;
+  overflow-x: hidden;
 }
 
-/* Section wrapper */
-.category-section {
-  padding: 3rem 1.5rem;
-  background-color: #f9fafb;
-}
-
-/* Section title */
-.section-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #1f2937;
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* =========================
-   CATEGORY GRID
+   HERO SECTION
 ========================= */
+
+.home-hero {
+  background: linear-gradient(
+      rgba(10, 30, 60, 0.7),
+      rgba(10, 30, 60, 0.7)
+    ),
+    url("/images/hero-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 6rem 0;
+}
+
+.home-title {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.home-title span {
+  color: #9ddcff;
+}
+
+.home-subtitle {
+  max-width: 600px;
+  margin-top: 1.5rem;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.home-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-outline {
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   TRUST STRIP
+========================= */
+
+.home-trust {
+  background: #f1f5f9;
+  padding: 3rem 0;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.trust-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.trust-card h3 {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.trust-card p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* =========================
+   CATEGORY SECTION (NEW)
+========================= */
+
+.category-section {
+  padding: 4rem 1.5rem;
+  background-color: #f9fafb;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #1f2937;
+}
 
 .category-grid {
   display: grid;
@@ -32,10 +136,6 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
-/* =========================
-   CATEGORY CARD
-========================= */
 
 .category-card {
   position: relative;
@@ -52,17 +152,12 @@
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Image */
 .category-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
-/* =========================
-   OVERLAY
-========================= */
 
 .category-overlay {
   position: absolute;
@@ -77,7 +172,6 @@
   padding: 1rem;
 }
 
-/* Overlay text */
 .category-overlay span {
   color: #ffffff;
   font-size: 16px;
@@ -86,12 +180,67 @@
 }
 
 /* =========================
-   MOBILE RESPONSIVE
+   SOLUTIONS
+========================= */
+
+.home-solutions {
+  padding: 4rem 0;
+  background: #ffffff;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.solution-box {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.75rem;
+  background: #f9fafb;
+}
+
+.solution-box h4 {
+  font-size: 17px;
+  margin-bottom: 0.5rem;
+}
+
+.solution-box p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* =========================
+   CTA STRIP
+========================= */
+
+.home-cta {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: #fff;
+  padding: 3.5rem 1.5rem;
+}
+
+.cta-box {
+  text-align: center;
+}
+
+.cta-box h2 {
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
+  .home-title {
+    font-size: 34px;
+  }
+
   .section-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .category-card {
@@ -100,6 +249,10 @@
 }
 
 @media (max-width: 480px) {
+  .home-title {
+    font-size: 28px;
+  }
+
   .category-card {
     height: 180px;
   }

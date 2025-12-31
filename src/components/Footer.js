@@ -100,20 +100,22 @@ const Footer = () => {
           <div className="contact-item">
             <Mail size={18} />
             <a href="mailto:support@biologistinfo.com">
-              support@biologistinfo.com
+            biologistservices@gmail.com
             </a>
           </div>
 
           <div className="contact-item">
             <Phone size={18} />
             <a href="tel:+919876543210">
-              +91 98765 43210
-            </a>
+                +91 9997635496   </a>
           </div>
 
           <div className="contact-item">
             <MapPin size={18} />
-            <span>India</span>
+            <span>BioLogist Sales & Services
+201/235C, Shanti Complex,
+New Manglapuri Village, Sultanpur,
+New Delhi Delhi 110030 India</span>
           </div>
         </div>
       </div>

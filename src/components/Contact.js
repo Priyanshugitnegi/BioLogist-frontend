@@ -11,30 +11,34 @@ export default function Contact() {
           <div className="contact-grid">
             {/* Contact Information */}
             <div className="contact-info">
-              <h3>BioLogist Technology Pvt. Ltd.</h3>
+              <h3>BioLogist Pvt. Ltd.</h3>
   
               <p>
                 Email:{" "}
                 <a href="mailto:info@biologistinfo.com">
-                  <strong>info@biologistinfo.com</strong>
+                  <strong>biologistservices@gmail.com</strong>
                 </a>
               </p>
   
               <p>
                 Phone:{" "}
                 <a href="tel:+91XXXXXXXXXX">
-                  <strong>+91 XXXXX XXXXX</strong>
+                  <strong>+91 9997635496</strong>
                 </a>
               </p>
   
-              <p>Location: India</p>
+              <p>Location: BioLogist Sales & Services
+201/235C, Shanti Complex,
+New Manglapuri Village, Sultanpur,
+New Delhi Delhi 110030 India
++91-9971979690</p>
             </div>
   
             {/* Map Section */}
             <div className="contact-map">
               <iframe
                 title="BioLogist Location"
-                src="https://www.google.com/maps?q=India&output=embed"
+                src="https://maps.app.goo.gl/t7xTampcXqkYR9D8A?g_st=ipc"
                 width="100%"
                 height="320"
                 style={{ border: 0 }}

@@ -23,7 +23,7 @@ export default function Contact() {
               <p>
                 Phone:{" "}
                 <a href="tel:+91XXXXXXXXXX">
-                  <strong>+91 9997635496</strong>
+                  <strong>+91 9997635496,+91-9971979690</strong>
                 </a>
               </p>
   

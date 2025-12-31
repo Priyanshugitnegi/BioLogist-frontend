@@ -1,0 +1,60 @@
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  
+  .contact-info h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #111827;
+  }
+  
+  .contact-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #374151;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #10b981;
+  }
+  
+  .contact-form button {
+    padding: 12px;
+    background-color: #10b981;
+    color: #ffffff;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    background-color: #059669;
+  }
+  
+  /* 📱 Mobile Responsive */
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

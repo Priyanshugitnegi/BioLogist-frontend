@@ -8,6 +8,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+
 import logo from "../assets/logo.png";
 import "./Footer.css";
 
@@ -36,13 +37,13 @@ const Footer = () => {
           </p>
 
           <div className="social-links">
-            <a href="#" aria-label="Facebook">
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <Facebook size={20} />
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <Linkedin size={20} />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <Instagram size={20} />
             </a>
           </div>
@@ -56,6 +57,7 @@ const Footer = () => {
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/enquiry">Enquiry</Link></li>
           </ul>
         </div>
 
@@ -97,12 +99,16 @@ const Footer = () => {
 
           <div className="contact-item">
             <Mail size={18} />
-            <span>support@biologistinfo.com</span>
+            <a href="mailto:support@biologistinfo.com">
+              support@biologistinfo.com
+            </a>
           </div>
 
           <div className="contact-item">
             <Phone size={18} />
-            <span>+91 98765 43210</span>
+            <a href="tel:+919876543210">
+              +91 98765 43210
+            </a>
           </div>
 
           <div className="contact-item">
@@ -118,12 +124,6 @@ const Footer = () => {
           © {new Date().getFullYear()} BioLogist Private Limited.
           All rights reserved.
         </p>
-
-        <div className="footer-legal">
-          <Link to="/privacy">Privacy Policy</Link>
-          <span>•</span>
-          <Link to="/terms">Terms of Service</Link>
-        </div>
       </div>
     </footer>
   );

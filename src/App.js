@@ -10,9 +10,10 @@ import Cart from "./components/Cart";
 import Enquiry from "./components/Enquiry";
 import OrderSuccess from "./components/OrderSuccess";
 import About from "./components/About";
+import Contact from "./components/Contact";   // ✅ ADD THIS
 
-import Login from "./components/Login";     // ✅ CUSTOMER LOGIN
-import Signup from "./components/Signup";   // ✅ CUSTOMER SIGNUP
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 import "./App.css";
 
@@ -28,13 +29,13 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} /> {/* ✅ FIXED */}
 
           {/* ================= CART ================= */}
           <Route path="/cart" element={<Cart />} />
 
           {/* ================= ENQUIRY ================= */}
           <Route path="/enquiry" element={<Enquiry />} />
-          <Route path="/contact" element={<Enquiry />} />
 
           {/* ================= AUTH ================= */}
           <Route path="/login" element={<Login />} />

@@ -58,3 +58,7 @@
     }
   }
   
+  .contact-map iframe {
+    border-radius: 12px;
+  }
+  

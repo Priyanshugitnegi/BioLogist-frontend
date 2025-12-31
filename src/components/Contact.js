@@ -10,19 +10,38 @@ export default function Contact() {
           </p>
   
           <div className="contact-grid">
-            {/* Contact Info */}
+            {/* Contact Information */}
             <div className="contact-info">
               <h3>BioLogist Technology Pvt. Ltd.</h3>
-              <p>Email: <strong>info@biologistinfo.com</strong></p>
-              <p>Phone: <strong>+91 XXXXX XXXXX</strong></p>
+              <p>
+                Email: <strong>info@biologistinfo.com</strong>
+              </p>
+              <p>
+                Phone: <strong>+91 XXXXX XXXXX</strong>
+              </p>
               <p>Location: India</p>
             </div>
   
-            {/* Contact Form */}
+            {/* Contact Form (UI Only) */}
             <form className="contact-form">
-              <input type="text" placeholder="Your Name" required />
-              <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="Your Message" rows="5" required></textarea>
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+              />
+  
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+              />
+  
+              <textarea
+                placeholder="Your Message"
+                rows="5"
+                required
+              ></textarea>
+  
               <button type="submit">Send Message</button>
             </form>
           </div>

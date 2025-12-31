@@ -38,8 +38,7 @@ New Delhi Delhi 110030 India
             <div className="contact-map">
               <iframe
                 title="BioLogist Location"
-                src="https://maps.app.goo.gl/t7xTampcXqkYR9D8A?g_st=ipc"
-                width="100%"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2750326277996!2d77.16911649999999!3d28.50137185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1e40568131b5%3A0x68e1c7d09bf76194!2sNew%20Manglapuri%2C%20Sultanpur%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1767180241335!5m2!1sen!2sin" 
                 height="320"
                 style={{ border: 0 }}
                 allowFullScreen=""

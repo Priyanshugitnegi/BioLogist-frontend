@@ -5,45 +5,44 @@ export default function Contact() {
           <h1 className="page-title">Contact Us</h1>
   
           <p className="page-text">
-            We’d love to hear from you. Reach out to us for collaborations,
-            enquiries, or support.
+            Visit us or reach out for collaborations, enquiries, or support.
           </p>
   
           <div className="contact-grid">
             {/* Contact Information */}
             <div className="contact-info">
               <h3>BioLogist Technology Pvt. Ltd.</h3>
+  
               <p>
-                Email: <strong>info@biologistinfo.com</strong>
+                Email:{" "}
+                <a href="mailto:info@biologistinfo.com">
+                  <strong>info@biologistinfo.com</strong>
+                </a>
               </p>
+  
               <p>
-                Phone: <strong>+91 XXXXX XXXXX</strong>
+                Phone:{" "}
+                <a href="tel:+91XXXXXXXXXX">
+                  <strong>+91 XXXXX XXXXX</strong>
+                </a>
               </p>
+  
               <p>Location: India</p>
             </div>
   
-            {/* Contact Form (UI Only) */}
-            <form className="contact-form">
-              <input
-                type="text"
-                placeholder="Your Name"
-                required
-              />
-  
-              <input
-                type="email"
-                placeholder="Your Email"
-                required
-              />
-  
-              <textarea
-                placeholder="Your Message"
-                rows="5"
-                required
-              ></textarea>
-  
-              <button type="submit">Send Message</button>
-            </form>
+            {/* Map Section */}
+            <div className="contact-map">
+              <iframe
+                title="BioLogist Location"
+                src="https://www.google.com/maps?q=India&output=embed"
+                width="100%"
+                height="320"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>

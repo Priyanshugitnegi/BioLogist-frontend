@@ -5,7 +5,7 @@ export default function About() {
         <h1 className="page-title">About Us</h1>
 
         <p className="page-text">
-          <strong>BioLogist Technology Private Limited</strong> specializes in
+          <strong>BioLogist  Private Limited</strong> specializes in
           cutting-edge biotechnology solutions, including logistics for
           biological materials, advanced research tools, and innovative
           technology integrations.

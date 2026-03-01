@@ -119,7 +119,7 @@ const Home = () => {
       </section>
 
       
-      {/* ================= ADVERTISEMENT VIDEO ================= */}
+      {/* ================= ADVERTISEMENT VIDEO =================
       <section className="home-video">
         <div className="home-container video-wrapper">
           <div className="video-text">
@@ -144,7 +144,7 @@ const Home = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= SOLUTIONS ================= */}
       <section className="home-solutions">

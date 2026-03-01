@@ -25,9 +25,7 @@ const Footer = () => {
               alt="BioLogist Private Limited"
               className="footer-logo-img"
             />
-            <span className="footer-brand">
-              BioLogist Private Limited
-            </span>
+            <span className="footer-brand">BioLogist Private Limited</span>
           </Link>
 
           <p className="footer-desc">
@@ -37,13 +35,30 @@ const Footer = () => {
           </p>
 
           <div className="social-links">
-            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://facebook.com"
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Facebook size={20} />
             </a>
-            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+
+            <a 
+              href="https://linkedin.com"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Linkedin size={20} />
             </a>
-            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+
+            <a 
+              href="https://instagram.com"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Instagram size={20} />
             </a>
           </div>
@@ -99,23 +114,24 @@ const Footer = () => {
 
           <div className="contact-item">
             <Mail size={18} />
-            <a href="mailto:support@biologistinfo.com">
-            biologistservices@gmail.com
+            <a href="mailto:biologistservices@gmail.com">
+              biologistservices@gmail.com
             </a>
           </div>
 
           <div className="contact-item">
             <Phone size={18} />
-            <a href="tel:+919876543210">
-                +91 9997635496   </a>
+            <a href="tel:+919997635496">+91 9997635496</a>
           </div>
 
           <div className="contact-item">
             <MapPin size={18} />
-            <span>BioLogist Sales & Services
-201/235C, Shanti Complex,
-New Manglapuri Village, Sultanpur,
-New Delhi Delhi 110030 India</span>
+            <span>
+              BioLogist Sales & Services<br />
+              201/235C, Shanti Complex,<br />
+              New Manglapuri Village, Sultanpur,<br />
+              New Delhi, Delhi 110030, India
+            </span>
           </div>
         </div>
       </div>
@@ -123,8 +139,7 @@ New Delhi Delhi 110030 India</span>
       {/* BOTTOM BAR */}
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} BioLogist Private Limited.
-          All rights reserved.
+          © {new Date().getFullYear()} BioLogist Private Limited. All rights reserved.
         </p>
       </div>
     </footer>

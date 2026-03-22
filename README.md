@@ -120,10 +120,6 @@ All API requests are sent to this server.
 
 ---
 
-## 📸 Screenshots (Optional but Recommended)
-
-Add screenshots of your UI here to improve presentation.
-
 ---
 
 ## ⚠️ Known Limitations
